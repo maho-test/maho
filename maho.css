@@ -1,0 +1,411 @@
+*{
+    margin:0;
+    box-sizing: border-box;
+}
+html{
+    font-size:10px;
+}
+	body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.content{
+    width:420px;
+    height:100vh;
+    /* border-radius: 5px; */
+    position: relative;
+    box-shadow: 2px 2px 10px 1px rgb(192, 191, 191);
+}
+.page{
+    position:absolute;
+    display:none;
+    width:100%;
+    height:100%;
+}
+/*상윤 부분*/
+        /* chat-box */
+.chat-back{
+    position: absolute;
+    bottom: 5%;
+   left: 5%;
+   width:90%;
+   height:30%;
+   background-image: url("./chat-box-bg.png");
+   background-color: #FFC2D5;
+   border-radius: 10px;;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   border: solid white 2px;
+   box-shadow:1px 1px 5px #535353;
+}
+.name-box{
+    width:20%;
+    opacity:0.8;
+    height:3rem;
+    text-align: center;
+    line-height: 3rem;
+    background-color: #FFC2D5;
+    border:solid white 1px;
+    border-radius:4px;
+    position: absolute;
+    top:-1.5rem;
+    left:1rem;
+}
+.chat{
+width:94%;
+height:90%;
+text-align: center;
+display: flex;
+justify-content: center;
+align-items: center;
+color:#535353;
+
+font-size:1.2rem;
+border-radius: 5px;
+background-color: #FFFFFF;
+}
+#next{
+    position: absolute;
+    right:3rem;
+    bottom: 1.5rem;
+    cursor: pointer;
+}
+    /* start page */
+.start{
+    /* opacity:1; */
+    background-image: url("./start-bg.png");
+    background-position: center;
+    background-size: 1200px;
+    
+}
+.start img{
+    position:absolute;
+    width:90%;
+    top:5%;
+    left: 5%;
+    
+}
+.start button{
+    background: #FFFFFF;
+    border-radius: 10px;
+    border:none;
+    width:17rem;
+    height:7rem;
+    font-size:3rem;
+    text-align: center;
+    position:absolute;
+    top: 50%;
+    left: calc(50% - 8.5rem)
+
+}
+.start span{
+    font-weight:bold;
+    position:absolute;
+    right:1rem;
+    bottom:1rem;
+}
+    /* story page */
+.story{
+    
+    position:absolute;
+
+}
+.story img{
+    width:60%;
+    position: absolute;
+    top:18rem;
+    left: 15%;
+}
+
+    /* test page */
+.test button{
+    color:#FFFFFF;
+    background-color: #FFC2D5;
+    border: #FFFFFF solid;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 3rem;
+    width:8rem;
+    height:3rem;
+    margin:1rem;
+}
+.test .progress-bar{
+    border:solid #FFC2D5 1px;
+    border-radius:15px ;
+    width:80%;
+    height:2.4rem;
+    position: absolute;
+    top:6rem;
+    left:10%
+}
+#progress-bar-before{
+    position: absolute;
+    top:8.3rem;
+    left:10%;
+    width: 2.2rem;
+    height: 20rem;
+    background: linear-gradient(180deg, rgba(255, 26, 96, 0.67) 2.49%, rgba(255, 26, 96, 0.47) 26.97%, rgba(255, 26, 96, 0.41) 51.97%, rgba(255, 26, 96, 0.12) 85.82%);
+    border-radius: 15px 15px 0 0;
+    transform: rotate(-90deg);
+    transform-origin: 0 0;
+    /* transition: 1s; */
+}
+
+.jjal{
+    position: absolute;
+    top:15rem;
+    left:calc(50% - 12.5rem);
+    width:25rem;
+    height:25rem;
+    border:#FFC2D5 solid 2px;
+    background-image: url("./mascot.png");
+    background-position: center;
+    background-size: 100%;
+    background-repeat:no-repeat;    
+}
+.select-container{
+    position: absolute;
+    top:15rem;
+    left:10%;
+    width:100%;
+}
+.select{
+    width:80%;
+    height:5rem;
+    background-color: white;
+    border: solid #FFC2D5 5px;
+    box-shadow: 2px 2px 2px rgba(255, 196, 214, 0.25);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+    color: #535353;
+    font-size:1.2rem;
+    margin-bottom: 3rem;
+    margin-top:2rem;
+    cursor:pointer;
+    
+}
+.select:hover{
+    background: linear-gradient(180deg, #FFC2D5 0%, rgba(255, 187, 208, 1) 50.52%, rgba(253, 197, 214, 1) 100%);
+    border: solid #ff6898 3px;
+
+}
+    /* loading */
+.loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1200px;
+    flex-direction: column;
+}
+.loading img{
+    animation: spin 2s infinite;
+    margin-bottom: 1rem;
+}
+@keyframes spin{
+    0%{
+        transform: rotate(0deg);
+    }
+    45%{
+        transform: rotate(-80deg);
+
+    }
+    100%{
+        transform: rotate(720deg);
+
+    }
+}
+
+
+/*다빈 부분*/
+.묶음{
+    /* height: 40%; */
+    
+}
+
+.묶음2{
+    margin-top: 7%;
+}
+
+.result{
+    opacity:1;
+    display: block;
+}
+
+.background_5{
+    
+    width: 95%;
+    height: 98%;
+    
+
+    margin: 0 auto;
+    margin-top: 2%;
+    background: #FFEAF0;
+    border: 1px solid #FFC4D6;
+    box-sizing: border-box;
+    border-radius: 10px;
+    
+        
+}
+
+.pattern_image{
+
+    height: 25%;
+    
+    
+    margin-top: 2%;
+    z-index: 1;
+    background-image: url('./img/backgroundPattern.png'); 
+    background-repeat: no-repeat;
+    background-position: center center; 
+}
+
+.result_image{
+    
+    height: 100%;
+    
+    z-index: 2;
+    background-image: url('./img/아무.png'); 
+    background-repeat: no-repeat;
+    background-position: center center; 
+    background-size: contain;
+    
+}
+
+#BF-image {
+    width: 70%;
+}
+
+#WF-image {
+    width: 70%;
+}
+
+#r_head{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 11px;
+    line-height: 13px;
+    text-align: center;
+
+    color: #000000;
+}
+
+
+#r_name{
+    
+
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 35px;
+    font-weight: 550;
+    
+    align-items: center;
+    
+    color: #FF6795;
+    
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+    }
+
+.result_text{
+    text-align: center;
+    
+}
+
+.result_box{
+    
+    width: 80%;
+    
+
+    text-align: center;
+    margin:0 auto;
+    
+    background: #FFFFFF;
+    border: 1px solid #FFC4D6;
+    box-sizing: border-box;
+    border-radius: 2px 14px;
+}
+
+.r_text{
+    width: 90%;
+    margin:0 auto;
+    margin-top: 3%;
+    margin-bottom: 4%;
+}
+
+.bar{
+    position: absolute;
+    width: 0px;
+    height: 40%;
+    /* left: 19.51px; */
+    right: 8%;
+    top: 279px;
+
+    border: 1px solid #FFC4D6;
+    transform: rotate(0.14deg);
+}
+
+#b_left{
+    left: 8%;
+}
+
+#b_right{}
+    
+
+
+#r_anima{
+    font-family: Roboto;
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 19px;
+/* identical to box height */
+
+text-align: center;
+
+color: #9D9D9D;
+}
+
+
+
+.묶음2{
+    
+    text-align: center;
+
+}
+
+.box_a, .box_b{
+    
+}
+
+.again_button{
+    width: 25%;
+    height: 4%;
+    background: #FFC4D6;
+    border: none;
+    border-radius: 3px;
+    margin: auto;
+    display: block;
+    margin-top: 8%;
+}
+
+/*현석 부분*/
+
+
+
+
+
+/* responsive */
+@media(max-width:420px){
+        .content{
+        width:100vw;
+        height:100vh;
+        margin:0;
+    }
+}

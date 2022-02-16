@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마법소녀 심리테스트</title>
+    <link rel="stylesheet" href="./maho.css">
+</head>
+
+<body>
+    <div class="content">
+        <div class="page start">
+            <img src="./logo.png" alt="마법소녀심리테스트">
+            <button type="button" onclick="startTest();">start</button>
+            <span>made by 멋사서강</span>
+        </div>
+        <div class="page story">
+            <img id="jjal" src="" alt="">
+            <div class="chat-back">
+                <div class="name-box">
+
+                </div>
+                <div class="chat">
+                    <div id="story-text">
+                        난 요괴가 아니라 요정이라구..! 내 이름은 빈짱! <br> 
+                    잘 부탁해!
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page test">
+            <button id = "prev"> 이전 </button>
+            <div id="progress-bar-before">
+
+            </div>
+            <div class="progress-bar">
+
+            </div>
+                <div class="jjal">
+                    <img id= "jjal2" src="" width= "100%" height="100%" alt="test image">
+                </div>
+                <div class="select-container">
+                    <div class="select">
+                        <div id="A">
+                            a.qqqqqqqqq
+                        </div>
+                    </div>
+                    <div class="select">
+                        <div id="B">
+                            b.wwwwwwwwww
+                        </div>
+                    </div>
+                    <div class="select">
+                        <div id="C">
+                            c.eeeeeeeee
+                        </div>
+
+                    </div>
+
+                </div>
+            <div class="chat-back">
+                <div class="name-box"></div>
+                <div class="chat">
+                    <div id="test-text">
+                        일어날 시간~~! 아침이 되었어요. <br>잠에서 깨어난 당신이 제일 먼저 하는 일은?
+                    </div>
+                    <div id="next">
+                        next >>
+                    </div>
+                </div>
+            </div>
+
+            <input type="hidden" id="아무" value="0">
+            <input type="hidden" id="세라" value="0">
+            <input type="hidden" id="유리" value="0">
+            <input type="hidden" id="비키" value="0">
+            <input type="hidden" id="예리" value="0">
+            <input type="hidden" id="네티" value="0">
+            <input type="hidden" id="레미" value="0">
+            <input type="hidden" id="메이" value="0">
+            <input type="hidden" id="사랑" value="0">
+            <input type="hidden" id="피치" value="0">
+            <input type="hidden" id="체리" value="0">
+            <input type="hidden" id="생물쌤" value="0">
+            <input type="hidden" id="쇼콜라" value="0">
+            <input type="hidden" id="바닐라" value="0">
+        </div>
+        <div class="page loading">
+            <img src="./loading.png" alt="">
+            Loading...
+        </div>
+        <div class="page result">
+            <div class="background_5">
+                <div class="pattern_image" >
+                    <div class="result_image">
+                    </div>
+                </div>
+                
+                <p id="r_head" class="result_text"></p>
+                <p id="r_name" class="result_text"></p>
+                <p id="r_anima" class="result_text"></p>
+                
+                <div class="묶음">
+                    <div class="bar" id="b_left"></div>
+                    <div class="result_box">
+                        <p class="r_text"></p> 
+                    </div>
+                    <div class="bar" id="b_right"></div>
+                </div>
+
+                
+
+                <div class="묶음2" sytle="overflow: hidden">  
+                    <div class="" style="display:flex; margin-top:10px; ">
+                        <div class="left" style="width:50%;">
+                            <div>환상 짝궁</div>
+                            <img id="BF-img" src="" class="box_a" width="70%" height="40%" alt="">
+                            <div id="BF">도레미</div> 
+                        </div>
+
+                        <div class="right" style="width:50%;">
+                            <div>환장 짝궁</div>
+                            <img id="WF-img" src="" class="box_b" width="70%" height="40%" alt="">
+                            <div id="WF">파란 도레미</div>
+                        </div>
+                    </div>             
+                </div>
+                <!-- 소셜 api 추가 기능 -->
+                <div class="flex-container" style="display:flex; justify-content: space-around; margin-top: 10%;">
+                    <div class="">
+                        <img src="kakao.png" class="box_t" style="width: 100%;  " alt="">
+                    </div>
+                    <div>
+                        <img src="kakao.png" class="box_t" style="width: 100%;  " alt="">
+                    </div>
+                    <div>
+                        <img src="kakao.png" class="box_t" style="width: 100%;  " alt="">
+                    </div>
+                    <div>
+                        <img src="kakao.png" class="box_t" style="width: 100%;  " alt="">
+                    </div>
+                </div>
+                
+                
+                <button class="again_button" >다시하기</button>
+                
+
+
+
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="maho.js"></script>
+
+</body>
+
+</html>
