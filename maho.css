@@ -1,9 +1,19 @@
+@font-face {
+    font-family: 'Gomsin';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/naverfont_05@1.0/Gomsin.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 *{
     margin:0;
     box-sizing: border-box;
 }
 html{
     font-size:10px;
+    -webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
 }
 	body{
     display: flex;
@@ -27,10 +37,10 @@ html{
         /* chat-box */
 .chat-back{
     position: absolute;
-    bottom: 5%;
+    bottom: 8%;
    left: 5%;
    width:90%;
-   height:30%;
+   height:20%;
    background-image: url("./chat-box-bg.png");
    background-color: #FFC2D5;
    border-radius: 10px;;
@@ -38,7 +48,7 @@ html{
    justify-content: center;
    align-items: center;
    border: solid white 2px;
-   box-shadow:1px 1px 5px #535353;
+   box-shadow:1px 1px 5px #fff0f0;
 }
 .name-box{
     width:20%;
@@ -61,8 +71,10 @@ display: flex;
 justify-content: center;
 align-items: center;
 color:#535353;
-
-font-size:1.2rem;
+font-family: 'Gomsin';
+padding: 0 10%;
+font-size:2rem;
+font-weight: 700;
 border-radius: 5px;
 background-color: #FFFFFF;
 }
@@ -134,28 +146,29 @@ background-color: #FFFFFF;
 .test .progress-bar{
     border:solid #FFC2D5 1px;
     border-radius:15px ;
-    width:80%;
+    width:76vw;
     height:2.4rem;
     position: absolute;
     top:6rem;
-    left:10%
+    left:12vw
 }
 #progress-bar-before{
     position: absolute;
     top:8.3rem;
-    left:10%;
+    left:12vw;
     width: 2.2rem;
-    height: 20rem;
+    height: 0vw;
     background: linear-gradient(180deg, rgba(255, 26, 96, 0.67) 2.49%, rgba(255, 26, 96, 0.47) 26.97%, rgba(255, 26, 96, 0.41) 51.97%, rgba(255, 26, 96, 0.12) 85.82%);
     border-radius: 15px 15px 0 0;
     transform: rotate(-90deg);
     transform-origin: 0 0;
+    transition: 1s;
     /* transition: 1s; */
 }
 
 .jjal{
     position: absolute;
-    top:15rem;
+    top:12rem;
     left:calc(50% - 12.5rem);
     width:25rem;
     height:25rem;
@@ -164,28 +177,50 @@ background-color: #FFFFFF;
     background-position: center;
     background-size: 100%;
     background-repeat:no-repeat;    
+    transition:.4s;
+    /* animation:  fadeIn 1s ease-in-out ;
+    animation-iteration-count: infinite;  
+    animation-play-state: paused; */
+}
+
+@keyframes fadeIn{
+    0%{
+        opacity:0;
+    }
+    90%{
+        opacity: 1;
+    }
+    100%{
+        opacity:1;
+    }
 }
 .select-container{
     position: absolute;
-    top:15rem;
-    left:10%;
+    top:12rem;
     width:100%;
+    padding:0 10%;
 }
 .select{
-    width:80%;
-    height:5rem;
+    width:100%;
+    opacity: .9;
+    /* height:5rem; */
+    min-height: 5rem;
+    line-height: 2.5rem;
     background-color: white;
     border: solid #FFC2D5 5px;
     box-shadow: 2px 2px 2px rgba(255, 196, 214, 0.25);
     border-radius: 10px;
     display: flex;
+    font-family: 'Gomsin';
     justify-content: center;
     align-items: center;   
-    color: #535353;
-    font-size:1.2rem;
+    color: #030303;
+    font-weight: 500;
+    font-size:1.8rem;
     margin-bottom: 3rem;
     margin-top:2rem;
     cursor:pointer;
+    padding:4% 10%;
     
 }
 .select:hover{
@@ -221,6 +256,7 @@ background-color: #FFFFFF;
 
 
 /*다빈 부분*/
+
 .묶음{
     /* height: 40%; */
     
@@ -228,6 +264,7 @@ background-color: #FFFFFF;
 
 .묶음2{
     margin-top: 7%;
+    font-size:1.3rem;
 }
 
 .result{
@@ -238,11 +275,12 @@ background-color: #FFFFFF;
 .background_5{
     
     width: 95%;
-    height: 98%;
+    /* height: 100%;
+    min-height: 98%; */
     
-
-    margin: 0 auto;
-    margin-top: 2%;
+    padding-top: 2rem;
+    margin: 2% auto;
+    
     background: #FFEAF0;
     border: 1px solid #FFC4D6;
     box-sizing: border-box;
@@ -265,13 +303,15 @@ background-color: #FFFFFF;
 
 .result_image{
     
-    height: 100%;
-    
+    min-height:20rem;
+    width:20rem;
+    margin: 0 auto;    
     z-index: 2;
-    background-image: url('./img/아무.png'); 
+    /* background-image: url('./img/아무.png');  */
     background-repeat: no-repeat;
     background-position: center center; 
     background-size: contain;
+    border-radius: 5px;
     
 }
 
@@ -284,21 +324,21 @@ background-color: #FFFFFF;
 }
 
 #r_head{
-    font-family: Roboto;
+    margin: 1rem 0;
+    font-family: 'Roboto';
     font-style: normal;
-    font-weight: normal;
-    font-size: 11px;
-    line-height: 13px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    line-height: 1.8rem;
     text-align: center;
 
-    color: #000000;
+    color: white;
+    border:#ff3e7b;
 }
 
 
 #r_name{
-    
-
-
+    margin: 1rem 0;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
@@ -315,7 +355,6 @@ background-color: #FFFFFF;
 
 .result_text{
     text-align: center;
-    
 }
 
 .result_box{
@@ -345,7 +384,7 @@ background-color: #FFFFFF;
     height: 40%;
     /* left: 19.51px; */
     right: 8%;
-    top: 279px;
+    top: 30rem;
 
     border: 1px solid #FFC4D6;
     transform: rotate(0.14deg);
@@ -375,14 +414,11 @@ color: #9D9D9D;
 
 
 .묶음2{
-    
+    margin-top:6rem;
     text-align: center;
-
+    font-size:1.4rem;
 }
 
-.box_a, .box_b{
-    
-}
 
 .again_button{
     width: 25%;
@@ -405,7 +441,7 @@ color: #9D9D9D;
 @media(max-width:420px){
         .content{
         width:100vw;
-        height:100vh;
+        /* height:100vh; */
         margin:0;
     }
 }
