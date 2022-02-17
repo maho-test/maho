@@ -35,6 +35,7 @@ function story1(){
         $("#jjal").attr("src",storyText[storyNow]["src"]);
     }else {
         $("#jjal").hide();
+        $(".story").css("transition",".5s");
         $(".story").css("background-color","black");
     }
     storyNow++;
@@ -62,7 +63,17 @@ function test() {
         $(".name-box").html(storyText[storyNow]["speaker"]);
         $("#test-text").html(storyText[storyNow]["text"]);
     }else if (storyText[storyNow]["type"] == "image") {
+        $(".jjal").css("opacity","0");
+
         $(".jjal").show();
+        // $(".jjal").css("animation-play-state","running");
+        // // $(".jjal").css("animation-play-state","running");
+        // setTimeout(()=>{
+        //     $(".jjal").css("animation-play-state","paused");
+        // },1000)
+        setTimeout(()=>{
+            $(".jjal").css("opacity","1");
+        },300)
         $("#jjal2").attr("src",storyText[storyNow]["src"]);
     }else if (storyText[storyNow]["type"] == "select") {
         testNow++;
@@ -100,6 +111,7 @@ document.getElementById("C").addEventListener('click', calPoint);
 var resultMaho;
 
 function calPoint() {
+    progressBar(testNow);
     selected = this.id;
     $("#아무").val(parseInt($("#아무").val()) + q[testNow][selected]["score"]["아무"]);
     $("#세라").val(parseInt($("#세라").val()) + q[testNow][selected]["score"]["세라"]);
@@ -584,3 +596,9 @@ function 임시초기화() {
     // $("#WF").html(WF);
 }
 임시초기화();
+
+//progress-bar
+const progressBar = (testNum)=>{
+    const gauge = document.querySelector("#progress-bar-before");
+    gauge.style.height = `${testNum*76/9}vw`
+}
