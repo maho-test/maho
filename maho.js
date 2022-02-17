@@ -19,7 +19,6 @@ function startTest() {
 
 // 모바일, 웹 모두 화면 어디든 클릭시 다음으로 넘어감.
 // EventListener는 동기적으로 바뀌어 적용되는게 아니라 한번만 적용되는 것.
-
 document.addEventListener('click', story1);
 
 // 시작부분 스토리 함수
@@ -68,12 +67,13 @@ function test() {
     }else if (storyText[storyNow]["type"] == "select") {
         testNow++;
         $(".name-box").hide();
-        $(".select-container").show();
+        // $(".select-container").show();
         $("#test-text").html(q[testNow]["question"]);
         $("#A").html(q[testNow]["A"]["answer"]);
         $("#B").html(q[testNow]["B"]["answer"]);
         $("#C").html(q[testNow]["C"]["answer"]);
         document.removeEventListener("click", test);
+        document.addEventListener("click", showSelect);
     }else if (storyText[storyNow]["type"] == "imageoff"){
         $(".jjal").hide();
         $("#test-text").html("");
@@ -85,6 +85,12 @@ function test() {
     storyNow++;
 }
 //..
+
+// 질문 먼저 나오고 클릭시 선택지 나오도록 하는 함수
+function showSelect(){
+    $(".select-container").show();
+    document.removeEventListener("click", showSelect);
+}
 
 // 선택지 선택시 호출, 점수 부여, 저장 후 eventListener 다시 추가하기
 document.getElementById("A").addEventListener('click', calPoint);
