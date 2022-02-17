@@ -63,17 +63,14 @@ function test() {
         $(".name-box").html(storyText[storyNow]["speaker"]);
         $("#test-text").html(storyText[storyNow]["text"]);
     }else if (storyText[storyNow]["type"] == "image") {
-        $(".jjal").css("opacity","0");
 
         $(".jjal").show();
-        // $(".jjal").css("animation-play-state","running");
-        // // $(".jjal").css("animation-play-state","running");
+        
+        // $(".jjal").css("opacity","0");
+
         // setTimeout(()=>{
-        //     $(".jjal").css("animation-play-state","paused");
-        // },1000)
-        setTimeout(()=>{
-            $(".jjal").css("opacity","1");
-        },300)
+        //     $(".jjal").css("opacity","1");
+        // },300)
         $("#jjal2").attr("src",storyText[storyNow]["src"]);
     }else if (storyText[storyNow]["type"] == "select") {
         testNow++;
@@ -600,5 +597,10 @@ function 임시초기화() {
 //progress-bar
 const progressBar = (testNum)=>{
     const gauge = document.querySelector("#progress-bar-before");
-    gauge.style.height = `${testNum*76/9}vw`
+    if (window.matchMedia("max-width:600px").matches){
+        gauge.style.height = `${testNum*76/9}vw`
+    } else{
+        gauge.style.height = `${testNum*30/9}rem`
+
+    }
 }

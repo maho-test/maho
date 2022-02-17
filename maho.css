@@ -146,16 +146,16 @@ background-color: #FFFFFF;
 .test .progress-bar{
     border:solid #FFC2D5 1px;
     border-radius:15px ;
-    width:76vw;
+    width:30rem;
     height:2.4rem;
     position: absolute;
     top:6rem;
-    left:12vw
+    left:calc(50% - 15rem)
 }
 #progress-bar-before{
     position: absolute;
     top:8.3rem;
-    left:12vw;
+    left:calc(50% - 15rem);
     width: 2.2rem;
     height: 0vw;
     background: linear-gradient(180deg, rgba(255, 26, 96, 0.67) 2.49%, rgba(255, 26, 96, 0.47) 26.97%, rgba(255, 26, 96, 0.41) 51.97%, rgba(255, 26, 96, 0.12) 85.82%);
@@ -165,13 +165,39 @@ background-color: #FFFFFF;
     transition: 1s;
     /* transition: 1s; */
 }
+@media(max-width:600px){
+    .test .progress-bar{
+        border:solid #FFC2D5 1px;
+        border-radius:15px ;
+        width:76vw;
+        height:2.4rem;
+        position: absolute;
+        top:6rem;
+        left:12vw
+    }
+    #progress-bar-before{
+        position: absolute;
+        top:8.3rem;
+        left:12vw;
+        width: 2.2rem;
+        height: 0vw;
+        background: linear-gradient(180deg, rgba(255, 26, 96, 0.67) 2.49%, rgba(255, 26, 96, 0.47) 26.97%, rgba(255, 26, 96, 0.41) 51.97%, rgba(255, 26, 96, 0.12) 85.82%);
+        border-radius: 15px 15px 0 0;
+        transform: rotate(-90deg);
+        transform-origin: 0 0;
+        transition: 1s;
+        /* transition: 1s; */
+    }
+}
+
+
 
 .jjal{
     position: absolute;
     top:12rem;
-    left:calc(50% - 12.5rem);
-    width:25rem;
-    height:25rem;
+    left:calc(50% - 15rem);
+    width:30rem;
+    height:30rem;
     border:#FFC2D5 solid 2px;
     background-image: url("./mascot.png");
     background-position: center;
@@ -198,7 +224,7 @@ background-color: #FFFFFF;
     position: absolute;
     top:12rem;
     width:100%;
-    padding:0 10%;
+    padding:0 8%;
 }
 .select{
     width:100%;
@@ -228,6 +254,7 @@ background-color: #FFFFFF;
     border: solid #ff6898 3px;
 
 }
+
     /* loading */
 .loading{
     display: flex;
@@ -315,24 +342,27 @@ background-color: #FFFFFF;
     
 }
 
-#BF-image {
+#BF-img {
     width: 70%;
+    height:50%;
 }
 
-#WF-image {
+#WF-img {
     width: 70%;
+    height:56%;
+
+
 }
 
 #r_head{
+    padding: 0 8%;
     margin: 1rem 0;
     font-family: 'Roboto';
     font-style: normal;
-    font-weight: bold;
-    font-size: 1.2rem;
-    line-height: 1.8rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
     text-align: center;
 
-    color: white;
     border:#ff3e7b;
 }
 
@@ -443,5 +473,41 @@ color: #9D9D9D;
         width:100vw;
         /* height:100vh; */
         margin:0;
+    }
+}
+@media(max-height:600px){
+    html{
+        font-size: 8px;
+    }
+    
+    .test .progress-bar{
+        border:solid #FFC2D5 1px;
+        border-radius:15px ;
+        width:30rem;
+        height:2.4rem;
+        position: absolute;
+        top:3rem;
+        left:calc(50% - 15rem)
+    }
+    #progress-bar-before{
+        position: absolute;
+        top:5.3rem;
+        left:calc(50% - 15rem);
+        width: 2.2rem;
+        height: 0vw;
+        background: linear-gradient(180deg, rgba(255, 26, 96, 0.67) 2.49%, rgba(255, 26, 96, 0.47) 26.97%, rgba(255, 26, 96, 0.41) 51.97%, rgba(255, 26, 96, 0.12) 85.82%);
+        border-radius: 15px 15px 0 0;
+        transform: rotate(-90deg);
+        transform-origin: 0 0;
+        transition: 1s;
+    }
+    .select-container{
+        position: absolute;
+        top:8rem;
+        width:100%;
+        padding:0 8%;
+    }
+    .jjal{
+        top:9rem;
     }
 }
