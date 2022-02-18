@@ -22,10 +22,21 @@ user-select: none;
 }
 .content{
     width:420px;
-    height:100vh;
+    height:667px;
     /* border-radius: 5px; */
     position: relative;
     box-shadow: 2px 2px 10px 1px rgb(192, 191, 191);
+    background-color: white;
+    /* transition: .2s; */
+}
+@media(max-height:667px){
+    .content{
+        margin-top:0px;
+        height:100vh;
+    }
+    body{
+        padding-top:0;
+    }
 }
 .page{
     position:absolute;
@@ -33,11 +44,16 @@ user-select: none;
     width:100%;
     height:100%;
 }
+body{
+    padding-top: calc(50vh - 333px);
+    background-image: url("./body-background.png");
+}
+
 /*상윤 부분*/
         /* chat-box */
 .chat-back{
     position: absolute;
-    bottom: 13vh;
+    top: 50rem;
     left: 5%;
    width:90%;
    height:20%;
@@ -152,6 +168,20 @@ background-color: #FFFFFF;
     position: absolute;
     top:6rem;
     left:calc(50% - 15rem)
+
+}
+.wingL{
+position:absolute;
+top:-20px;
+left:-44px;
+width:5rem;
+}
+.wingR{
+position:absolute;
+top:-20px;
+right:-44px;
+width:5rem;
+
 }
 #progress-bar-before{
     position: absolute;
@@ -166,20 +196,20 @@ background-color: #FFFFFF;
     transition: 1s;
     /* transition: 1s; */
 }
-@media(max-width:600px){
+@media(max-width:420px){
     .test .progress-bar{
         border:solid #FFC2D5 1px;
         border-radius:15px ;
-        width:76vw;
+        width:72vw;
         height:2.4rem;
         position: absolute;
         top:6rem;
-        left:12vw
+        left:14vw
     }
     #progress-bar-before{
         position: absolute;
         top:8.3rem;
-        left:12vw;
+        left:14vw;
         width: 2.2rem;
         height: 0vw;
         background: linear-gradient(180deg, rgba(255, 26, 96, 0.67) 2.49%, rgba(255, 26, 96, 0.47) 26.97%, rgba(255, 26, 96, 0.41) 51.97%, rgba(255, 26, 96, 0.12) 85.82%);
@@ -204,7 +234,7 @@ background-color: #FFFFFF;
     background-position: center;
     background-size: 100%;
     background-repeat:no-repeat;    
-    transition:.4s;
+    transition:.25s;
     /* animation:  fadeIn 1s ease-in-out ;
     animation-iteration-count: infinite;  
     animation-play-state: paused; */
@@ -248,11 +278,18 @@ background-color: #FFFFFF;
     margin-top:2rem;
     cursor:pointer;
     padding:4% 10%;
-    
+    transition: .5s;
 }
+
 .select:hover{
     background: linear-gradient(180deg, #FFC2D5 0%, rgba(255, 187, 208, 1) 50.52%, rgba(253, 197, 214, 1) 100%);
     border: solid #ff6898 3px;
+    font-size:2.2rem;
+}
+.select:active{
+    background: linear-gradient(180deg, #FFC2D5 0%, rgba(255, 187, 208, 1) 50.52%, rgba(253, 197, 214, 1) 100%);
+    border: solid #ff6898 3px;
+    font-size:2.2rem;
 }
 
 /* .select:active{
@@ -293,21 +330,24 @@ background-color: #FFFFFF;
     opacity:1;
     display: block;
 }
+.content{
+    
+    /* border-radius: 5px; */
+    position: relative;
+    background-color: white;
+    /* transition: .2s; */
+}
 
 .background_5{
-    
-    width: 95%;
-    /* height: 100%;
-    min-height: 98%; */
-    
+    width:420px;    
     padding-top: 2rem;
-    margin: 0% auto;
-    
+    margin: 2rem auto;
+    box-shadow: 2px 2px 10px 1px rgb(192, 191, 191);
     background: #FFEAF0;
     border: 1px solid #FFC4D6;
     box-sizing: border-box;
     border-radius: 10px;
-    
+    position: relative;
         
 }
 
@@ -325,8 +365,8 @@ background-color: #FFFFFF;
 
 .result_image{
     
-    min-height:20rem;
-    width:20rem;
+    min-height:23rem;
+    width:23rem;
     margin: 0 auto;    
     z-index: 2;
     /* background-image: url('./img/아무.png');  */
@@ -393,7 +433,7 @@ background-color: #FFFFFF;
 .result_box{
     
     width: 80%;
-    
+    position: relative;
 
     text-align: left;
     margin:0 auto;
@@ -417,17 +457,17 @@ background-color: #FFFFFF;
 .bar{
     position: absolute;
     width: 0px;
-    height: 40%;
+    height: 95%;
     /* left: 19.51px; */
-    right: 8%;
-    top: 30rem;
+    right: -12px;
+    top: 2.5%;
 
     border: 1px solid #FFC4D6;
     transform: rotate(0.14deg);
 }
 
 #b_left{
-    left: 8%;
+    left: -12px;
 }
 
 #b_right{
@@ -456,6 +496,7 @@ color: #9D9D9D;
 }
 
 
+
 .again_button{
     width: 25%;
     height: 4%;
@@ -466,7 +507,19 @@ color: #9D9D9D;
     display: block;
     margin-top: 8%;
 }
-
+.shareButton{
+    width:14rem;
+    height:4rem;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    line-height: 4rem;
+    color:#ff3e7b;
+    border-radius: 20px;
+    border: solid #ff3e7b 2px;
+    background-color: white;
+    margin-bottom: 1rem;
+}
 /*현석 부분*/
 .best {
     color:rgb(233, 71, 71);
@@ -495,6 +548,9 @@ color: #9D9D9D;
         }
         .chat-back {
             bottom: 20vh;
+        }
+        .background_5{
+            margin:0;
         }
 }
 
