@@ -37,8 +37,8 @@ user-select: none;
         /* chat-box */
 .chat-back{
     position: absolute;
-    bottom: 8%;
-   left: 5%;
+    bottom: 13vh;
+    left: 5%;
    width:90%;
    height:20%;
    background-image: url("./chat-box-bg.png");
@@ -87,9 +87,10 @@ background-color: #FFFFFF;
     /* start page */
 .start{
     /* opacity:1; */
-    background-image: url("./start-bg.png");
-    background-position: center;
-    background-size: 1200px;
+    background-image: url("./background/bg8.jpg");
+    background-position: 50% 30%;
+    /* background-size: 1200px; */
+    background-size:cover;
     
 }
 .start img{
@@ -252,8 +253,12 @@ background-color: #FFFFFF;
 .select:hover{
     background: linear-gradient(180deg, #FFC2D5 0%, rgba(255, 187, 208, 1) 50.52%, rgba(253, 197, 214, 1) 100%);
     border: solid #ff6898 3px;
-
 }
+
+/* .select:active{
+    font-size: 50px;
+    transition-duration: 3s;
+} */
 
     /* loading */
 .loading{
@@ -284,16 +289,6 @@ background-color: #FFFFFF;
 
 /*다빈 부분*/
 
-.묶음{
-    /* height: 40%; */
-    
-}
-
-.묶음2{
-    margin-top: 7%;
-    font-size:1.3rem;
-}
-
 .result{
     opacity:1;
     display: block;
@@ -306,7 +301,7 @@ background-color: #FFFFFF;
     min-height: 98%; */
     
     padding-top: 2rem;
-    margin: 2% auto;
+    margin: 0% auto;
     
     background: #FFEAF0;
     border: 1px solid #FFC4D6;
@@ -321,9 +316,9 @@ background-color: #FFFFFF;
     height: 25%;
     
     
-    margin-top: 2%;
+
     z-index: 1;
-    background-image: url('./img/backgroundPattern.png'); 
+    background-image: url('backgroundPattern.png'); 
     background-repeat: no-repeat;
     background-position: center center; 
 }
@@ -338,42 +333,50 @@ background-color: #FFFFFF;
     background-repeat: no-repeat;
     background-position: center center; 
     background-size: contain;
-    border-radius: 5px;
+    border-radius: 25px;
     
 }
 
 #BF-img {
     width: 70%;
-    height:50%;
+    height: 60%;
+    border-radius: 10px;
 }
 
 #WF-img {
     width: 70%;
-    height:56%;
+    height: 60%;
+    border-radius: 10px;
+}
 
-
+#BF, #WF {
+    color:rgb(95, 95, 95);
+    font-weight: bold;
 }
 
 #r_head{
     padding: 0 8%;
-    margin: 1rem 0;
+    margin: 0 0 10px 0;
     font-family: 'Roboto';
     font-style: normal;
-    font-size: 1rem;
-    line-height: 1.5rem;
+    font-size: 1.6rem;
+    line-height: 1.7rem;
     text-align: center;
-
+    font-weight: bold;
     border:#ff3e7b;
+}
+.line2 {
+    margin-top:5px;
 }
 
 
 #r_name{
     margin: 1rem 0;
-    font-family: Roboto;
+    font-family: 'Roboto';
     font-style: normal;
     font-weight: normal;
-    font-size: 30px;
-    line-height: 35px;
+    font-size: 28px;
+    line-height: 25px;
     font-weight: 550;
     
     align-items: center;
@@ -392,13 +395,16 @@ background-color: #FFFFFF;
     width: 80%;
     
 
-    text-align: center;
+    text-align: left;
     margin:0 auto;
     
     background: #FFFFFF;
     border: 1px solid #FFC4D6;
     box-sizing: border-box;
     border-radius: 2px 14px;
+
+    font-size: 12px;
+    line-height: 1.6em;
 }
 
 .r_text{
@@ -424,12 +430,14 @@ background-color: #FFFFFF;
     left: 8%;
 }
 
-#b_right{}
+#b_right{
+
+}
     
 
 
 #r_anima{
-    font-family: Roboto;
+    font-family: 'Roboto';
 font-style: normal;
 font-weight: 500;
 font-size: 16px;
@@ -441,12 +449,10 @@ text-align: center;
 color: #9D9D9D;
 }
 
-
-
 .묶음2{
-    margin-top:6rem;
+    margin-top: 1rem;
     text-align: center;
-    font-size:1.4rem;
+    font-size:1.6rem;
 }
 
 
@@ -462,24 +468,51 @@ color: #9D9D9D;
 }
 
 /*현석 부분*/
-
-
+.best {
+    color:rgb(233, 71, 71);
+    font-size: 1.1em;
+}
+.worst {
+    color:rgb(0, 0, 85);
+    font-size: 1.1em;
+}
 
 
 
 /* responsive */
+
 @media(max-width:420px){
         .content{
         width:100vw;
         /* height:100vh; */
         margin:0;
     }
+        .result_box {
+            font-size: 14px;
+        }
+        #r_head {
+            line-height: 1.6rem;
+        }
+        .chat-back {
+            bottom: 20vh;
+        }
 }
+
+@media(max-width:380px) {
+    .chat-back {
+        bottom: 11vh;
+    }
+}
+
 @media(max-height:600px){
     html{
         font-size: 8px;
     }
     
+    .result_box {
+        font-size: 11px;
+    }
+
     .test .progress-bar{
         border:solid #FFC2D5 1px;
         border-radius:15px ;
@@ -508,6 +541,9 @@ color: #9D9D9D;
         padding:0 8%;
     }
     .jjal{
-        top:9rem;
+        top: 9rem;
+        height: 35rem;
+        width: 35rem;
+        left: calc(50% - 18rem);
     }
 }
