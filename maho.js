@@ -7,6 +7,8 @@
 
 var storyNow = 1;   // 현재 스토리 부분
 var testNow = 0;   // 현재 선택지 진행도
+var i;
+
 
 // start 버튼 누르면 story 진행
 function startTest() {
@@ -20,19 +22,45 @@ function startTest() {
 // 모바일, 웹 모두 화면 어디든 클릭시 다음으로 넘어감.
 // EventListener는 동기적으로 바뀌어 적용되는게 아니라 한번만 적용되는 것.
 
+function delay(time) {
+    return new Promise(resolve => setTimeout(resolve, time));
+}
+
+async function delayStoryText(txt) {
+    i = 0;
+    document.getElementById("story-text").innerHTML = "";
+    while(i<txt.length){
+        await delay(50);
+        document.getElementById("story-text").innerHTML += txt.charAt(i)+txt.charAt(i+1)+txt.charAt(i+2);
+        i+=3;
+    }
+    document.addEventListener('click', story1);
+}
+
+async function delayTestText(txt) {
+    i = 0;
+    document.getElementById("test-text").innerHTML = "";
+    while(i<txt.length){
+        await delay(50);
+        document.getElementById("test-text").innerHTML += txt.charAt(i)+txt.charAt(i+1)+txt.charAt(i+2);
+        i+=3;
+    }
+    document.addEventListener('click', test);
+}
+
 // 시작부분 스토리 함수
-function story1(){
+async function story1(){
     if (storyText[storyNow]["type"] == "story") {
         $(".name-box").hide();
-        // typeWriter();
-        // i=0;
-        $("#story-text").html(storyText[storyNow]["text"]);
+        var txt = storyText[storyNow]["text"];
+        document.removeEventListener('click', story1);
+        delayStoryText(txt);
     }else if (storyText[storyNow]["type"] == "chat") {
         $(".name-box").show();
         $(".name-box").html(storyText[storyNow]["speaker"]);
-        // typeWriter();
-        // i=0;
-        $("#story-text").html(storyText[storyNow]["text"]);
+        var txt = storyText[storyNow]["text"];
+        document.removeEventListener('click', story1);
+        delayStoryText(txt);
     }else if (storyText[storyNow]["type"] == "image") {
         $("#jjal").show();
         $("#jjal").attr("src",storyText[storyNow]["src"]);
@@ -50,7 +78,7 @@ function story1(){
 // ..
 
 // 테스트 부분 함수, 프로그레스바, 선택창까지 관리
-function test() {
+async function test() {
     if (storyNow == 8) {
                 $(".story").css("backgroundColor","white");
                 $(".story").hide();
@@ -60,32 +88,48 @@ function test() {
             }
     if (storyText[storyNow]["type"] == "story") {
         $(".name-box").hide();
-        $("#test-text").html(storyText[storyNow]["text"]);
+        var txt = storyText[storyNow]["text"];
+        document.removeEventListener('click', test);
+        delayTestText(txt);
+        // $("#test-text").html(storyText[storyNow]["text"]);
     }else if (storyText[storyNow]["type"] == "chat") {
         $(".name-box").show();
         $(".name-box").html(storyText[storyNow]["speaker"]);
-        $("#test-text").html(storyText[storyNow]["text"]);
+        var txt = storyText[storyNow]["text"];
+        document.removeEventListener('click', test);
+        delayTestText(txt);
+        // $("#test-text").html(storyText[storyNow]["text"]);
     }else if (storyText[storyNow]["type"] == "image") {
 
         $(".jjal").show();
         
-        $(".jjal").css("filter","blur(2px)");
+        // $(".jjal").css("filter","blur(2px)");
 
-        setTimeout(()=>{
-            $(".jjal").css("filter","blur(0px)");
-        },500)
+        // setTimeout(()=>{
+        //     $(".jjal").css("filter","blur(0px)");
+        // },500)
         $("#jjal2").attr("src",storyText[storyNow]["src"]);
     }else if (storyText[storyNow]["type"] == "select") {
         testNow++;
         $(".name-box").hide();
-        // $(".select-container").show();
-        $("#test-text").html(q[testNow]["question"]);
+
+        // 이 부분은 event 관리를 위해 test 내에 작성
+        document.removeEventListener('click', test);
+        var txt = q[testNow]["question"];
+        i = 0;
+        document.getElementById("test-text").innerHTML = "";
+        while(i<txt.length){
+            await delay(50);
+            document.getElementById("test-text").innerHTML += txt.charAt(i)+txt.charAt(i+1)+txt.charAt(i+2);
+            i+=3;
+        }
+        //...
+
+        // $("#test-text").html(q[testNow]["question"]);
         $('.select').hide();
         $("#A").html(q[testNow]["A"]["answer"]);
         $("#B").html(q[testNow]["B"]["answer"]);
         $("#C").html(q[testNow]["C"]["answer"]);
-
-        
 
         document.removeEventListener("click", test);
         document.addEventListener("click", showSelect);
@@ -222,8 +266,7 @@ var storyText = {
     5: {"type" : "chat",
         "speaker" : "나",
         "text" : "(...?)"},
-    6: {"type" : "chat",
-        "speaker" : "빈짱",
+    6: {"type" : "story",
         "text" : "요정의 말을 듣고, 나는 마법소녀가 되어 세상을 지키기 시작했다.."},
     7: {"type" : "black"},
     // 8번부터 test div 이용.
@@ -595,9 +638,12 @@ function 임시초기화() {
     $(".page").hide();
     $(".start").show();
     $(".select-container").hide();
+    
+
+    // 결과창 확인할 때 사용
+    // 결과창 이미지, 정보 채우기
     // var resultMaho ="유리";
     // $(".result").show();
-    // // 결과창 이미지, 정보 채우기
     // $(".result_image").css("background-image", "url(" + result[resultMaho]["img"]+")");
     // $(".line1").html("\""+result[resultMaho]["line1"] + "\"<br>");
     // $(".line2").html("\"" + result[resultMaho]["line2"] + "\"");
@@ -624,19 +670,5 @@ const progressBar = (testNum)=>{
     } else{
         gauge.style.height = `${testNum * 30 / 10}rem`
 
-    }
-}
-
-
-// 텍스트 타이핑 애니메이션
-var i = 0;
-var speed = 50; /* The speed/duration of the effect in milliseconds */
-
-function typeWriter() {
-    var txt = storyText[storyNow]["text"];
-    if (i < txt.length) {
-        document.getElementById("story-text").innerHTML += txt.charAt(i);
-        i++;
-        setTimeout(typeWriter, speed);
     }
 }
