@@ -154,15 +154,17 @@ async function test() {
 // 질문 먼저 나오고 클릭시 선택지 나오도록 하는 함수
 function showSelect(){
     $(".select-container").show();
-    //선택지 따라락
-    const abc=["#A","#B","#C"];
-    for (let i = 0;i<3;i++){
-        setTimeout(()=>{
-           console.log(abc[i]);
-           $(abc[i]).show();
+    $(".select").show();
 
-        },150 * i)
-    }
+    // //선택지 따라락
+    // const abc=["#A","#B","#C"];
+    // for (let i = 0;i<3;i++){
+    //     setTimeout(()=>{
+    //        console.log(abc[i]);
+    //        $(abc[i]).show();
+
+    //     },150 * i)
+    // }
     document.removeEventListener("click", showSelect);
 }
 
@@ -193,8 +195,10 @@ function calPoint() {
     $("#바닐라").val(parseInt($("#바닐라").val()) + q[testNow][selected]["score"]["바닐라"]);
 
     
-
-    $(".select-container").hide();
+    setTimeout(()=>{
+        $(".select-container").hide();
+    },800)
+    // $(".select-container").hide();
     $("#test-text").html("");
 
     if (testNow==9){
@@ -238,8 +242,14 @@ function calPoint() {
     }
     else {
         // 바로 다음으로 진행
-        document.addEventListener('click', test);
+        setTimeout(()=>{
+            console.log("abab");
+            document.addEventListener('click', test);
+        },800)
+        // document.addEventListener('click', test);
+
     }
+    
 }
 
 
