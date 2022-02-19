@@ -4,6 +4,12 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'SBAggroL';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroL.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 *{
     margin:0;
     box-sizing: border-box;
@@ -110,13 +116,14 @@ background-color: #FFFFFF;
     background-size:cover;
     
 }
-.start img{
+.start > img{
     position:absolute;
     width:90%;
     top:5%;
     left: 5%;
     
 }
+
 .start button{
     background: #FFFFFF;
     border-radius: 10px;
@@ -131,11 +138,22 @@ background-color: #FFFFFF;
 
 }
 .start span{
-    font-weight:bold;
     position:absolute;
-    right:1rem;
-    bottom:1rem;
+    font-weight: bold;
+    right:3rem;
+    bottom:3rem;
+    color:white;
+    display: flex;
+    align-items: center;
 }
+#sglion{
+    width:4rem;
+    display: inline;
+    background-color: #030303;
+    border-radius: 5px;
+    margin-left: 5px;
+}
+
     /* story page */
 .story{
     
@@ -272,8 +290,8 @@ width:5rem;
     font-family: 'Gomsin';
     justify-content: center;
     align-items: center;   
-    color: #030303;
-    font-weight: 500;
+    color: rgb(116, 116, 116);
+    font-weight: 600;
     font-size:1.8rem;
     margin-bottom: 3rem;
     margin-top:2rem;
@@ -282,21 +300,24 @@ width:5rem;
     transition: .5s;
 }
 
-.select:hover{
+/* .select:hover{
     background: linear-gradient(180deg, #FFC2D5 0%, rgba(255, 187, 208, 1) 50.52%, rgba(253, 197, 214, 1) 100%);
-    border: solid #ff6898 3px;
+    border: solid #ff6898 5px;
     font-size:2.2rem;
+} */
+@media(screen){
+    .select:hover{
+        background: linear-gradient(180deg, #FFC2D5 0%, rgba(255, 187, 208, 1) 50.52%, rgba(253, 197, 214, 1) 100%);
+        border: solid #ff6898 5px;
+        font-size: 1.8rem;
+    }
 }
 .select:active{
     background: linear-gradient(180deg, #FFC2D5 0%, rgba(255, 187, 208, 1) 50.52%, rgba(253, 197, 214, 1) 100%);
-    border: solid #ff6898 3px;
+    border: solid #ff6898 5px;
     font-size:2.2rem;
 }
 
-/* .select:active{
-    font-size: 50px;
-    transition-duration: 3s;
-} */
 
     /* loading */
 .loading{
@@ -330,6 +351,7 @@ width:5rem;
 .result{
     opacity:1;
     display: block;
+    font-family: 'SBAggroL';
 }
 .content{
     
@@ -572,6 +594,19 @@ color: #9D9D9D;
     .result_box {
         font-size: 11px;
     }
+    .wingL{
+        position:absolute;
+        top:-17px;
+        left:-35px;
+        width:5rem;
+        }
+        .wingR{
+        position:absolute;
+        top:-17px;
+        right:-35px;
+        width:5rem;
+        
+        }
 
     .test .progress-bar{
         border:solid #FFC2D5 1px;
