@@ -69,25 +69,29 @@ function test() {
 
         $(".jjal").show();
         
-        // $(".jjal").css("opacity","0");
+        $(".jjal").css("filter","blur(2px)");
 
-        // setTimeout(()=>{
-        //     $(".jjal").css("opacity","1");
-        // },300)
+        setTimeout(()=>{
+            $(".jjal").css("filter","blur(0px)");
+        },500)
         $("#jjal2").attr("src",storyText[storyNow]["src"]);
     }else if (storyText[storyNow]["type"] == "select") {
         testNow++;
         $(".name-box").hide();
         // $(".select-container").show();
         $("#test-text").html(q[testNow]["question"]);
+        $('.select').hide();
         $("#A").html(q[testNow]["A"]["answer"]);
         $("#B").html(q[testNow]["B"]["answer"]);
         $("#C").html(q[testNow]["C"]["answer"]);
+
+        
+
         document.removeEventListener("click", test);
         document.addEventListener("click", showSelect);
     }else if (storyText[storyNow]["type"] == "imageoff"){
         $(".jjal").hide();
-        $("#test-text").html("");
+        // $("#test-text").html("");
     }
     else {
         $(".jjal").hide();
@@ -100,6 +104,15 @@ function test() {
 // 질문 먼저 나오고 클릭시 선택지 나오도록 하는 함수
 function showSelect(){
     $(".select-container").show();
+    //선택지 따라락
+    const abc=["#A","#B","#C"];
+    for (let i = 0;i<3;i++){
+        setTimeout(()=>{
+           console.log(abc[i]);
+           $(abc[i]).show();
+
+        },150 * i)
+    }
     document.removeEventListener("click", showSelect);
 }
 
@@ -607,9 +620,9 @@ function 임시초기화() {
 const progressBar = (testNum)=>{
     const gauge = document.querySelector("#progress-bar-before");
     if (window.matchMedia("max-width:600px").matches){
-        gauge.style.height = `${testNum*76/9}vw`
+        gauge.style.height = `${testNum * 72 / 10}vw`
     } else{
-        gauge.style.height = `${testNum*30/9}rem`
+        gauge.style.height = `${testNum * 30 / 10}rem`
 
     }
 }
