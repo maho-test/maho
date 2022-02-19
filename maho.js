@@ -48,6 +48,10 @@ async function delayTestText(txt) {
     document.addEventListener('click', test);
 }
 
+async function delayImage(){
+    $("#jjal2").attr("src","black.png");
+}
+
 // 시작부분 스토리 함수
 async function story1(){
     if (storyText[storyNow]["type"] == "story") {
@@ -102,7 +106,9 @@ async function test() {
     }else if (storyText[storyNow]["type"] == "image") {
 
         $(".jjal").show();
-        
+
+        $("#jjal2").attr("src","black.png");
+        await delay(20);
         // $(".jjal").css("filter","blur(2px)");
 
         // setTimeout(()=>{
@@ -440,7 +446,7 @@ var q = {
         }
     },
     6: {
-        "question" : "정말 싫어하는 애가 괴수에게 잡아 먹히려 한다. <br>도우면 나도 위험해질 수 있다.",
+        "question" : "정말 싫어하는 애가 괴수에게 잡아 먹히려 한다. 도우면 나도 위험해질 수 있다.",
         "A" : {
             "answer" : "괴수한테 마법을 날리는 척하면서 그 녀석에게 날린다.",
             "score" : {"아무": 0, "세라": 0, "유리": 1, "비키": 2, "예리": 0, "네티": 1, "레미": 1, "메이": 0, "사랑": 2, "피치": 0, "체리": 0, "중성마녀": 4, "쇼콜라": 2, "바닐라": 1}

@@ -231,11 +231,12 @@ width:5rem;
     width:30rem;
     height:30rem;
     border:#FFC2D5 solid 2px;
-    background-image: url("./mascot.png");
+    /* background-image: url("./black.png"); */
     background-position: center;
     background-size: 100%;
     background-repeat:no-repeat;    
-    transition:.25s;
+    /* transition:.25s; */
+    /* background-color: black; */
     /* animation:  fadeIn 1s ease-in-out ;
     animation-iteration-count: infinite;  
     animation-play-state: paused; */
