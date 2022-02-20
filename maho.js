@@ -190,12 +190,15 @@ function calPoint() {
     $("#중성마녀").val(parseInt($("#중성마녀").val()) + q[testNow][selected]["score"]["중성마녀"]);
     $("#쇼콜라").val(parseInt($("#쇼콜라").val()) + q[testNow][selected]["score"]["쇼콜라"]);
     $("#바닐라").val(parseInt($("#바닐라").val()) + q[testNow][selected]["score"]["바닐라"]);
-
     
+    // $(`#`+selected).addClass("selectActive")
+    $(`#`+selected).css("font-size","2.1rem")
+
+
     setTimeout(()=>{
         $(".select-container").hide();
-    },800)
-    // $(".select-container").hide();
+        $(`#`+selected).css("font-size","1.8rem")
+    },1500)
     $("#test-text").html("");
 
     if (testNow==9){
@@ -241,7 +244,8 @@ function calPoint() {
         // 바로 다음으로 진행
         setTimeout(()=>{
             document.addEventListener('click', test);
-        },1500)
+            test();
+        },800)
         // document.addEventListener('click', test);
 
     }
