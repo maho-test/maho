@@ -168,7 +168,6 @@ var resultMaho;
 
 // 선택지 버튼 클릭시 호출
 function calPoint() {
-    console.log(testNow);
     document.getElementById("A").removeEventListener('click', calPoint);
     document.getElementById("B").removeEventListener('click', calPoint);
     document.getElementById("C").removeEventListener('click', calPoint);
@@ -334,7 +333,7 @@ var storyText = {
     27: {"type" : "story",
         "text" : "창 밖에서 나를 부르는 소리가 들린다."},
     28: {"type" : "image",
-        "src" : "propose3.png"},
+        "src" : "propose.png"},
     29: {"type" : "select"},
     30: {"type" : "image",
         "src": "hallway.jpg"},
@@ -661,10 +660,9 @@ var result = {
 
 // 개발 편의를 위한 함수
 function 임시초기화() {
-    $(".page").hide();
-    $(".start").show();
-    $(".select-container").hide();
-    
+    // $(".page").hide();
+    // $(".start").show();
+    // $(".select-container").hide();
 
     // 결과창 확인할 때 사용
     // 결과창 이미지, 정보 채우기
@@ -686,15 +684,14 @@ function 임시초기화() {
     // $(".start").hide();
     // $(".content").css('box-shadow','0px 0px 0px 0px');
 }
-임시초기화();
+// 임시초기화();
 
 //progress-bar
 const progressBar = (testNum)=>{
     const gauge = document.querySelector("#progress-bar-before");
-    if (window.matchMedia("max-width:600px").matches){
-        gauge.style.height = `${testNum * 72 / 10}vw`
+    if (window.matchMedia('(max-width:420px)').matches){
+        gauge.style.height = `${testNum * 72 / 9}vw`;
     } else{
-        gauge.style.height = `${testNum * 30 / 10}rem`
-
+        gauge.style.height = `${testNum * 30 / 9}rem`;
     }
 }

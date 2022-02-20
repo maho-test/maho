@@ -110,6 +110,7 @@ background-color: #FFFFFF;
     /* start page */
 .start{
     /* opacity:1; */
+    display: block;
     background-image: url("./background/bg10.jpg");
     background-position: 50% 40%;
     /* background-size: 1200px; */
@@ -309,7 +310,7 @@ width:5rem;
 
     /* loading */
 .loading{
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     perspective: 1200px;
@@ -338,7 +339,7 @@ width:5rem;
 
 .result{
     opacity:1;
-    display: block;
+    display: none;
     font-family: 'SBAggroL';
 }
 .content{
