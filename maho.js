@@ -48,6 +48,7 @@ async function delayTestText(txt) {
     document.addEventListener('click', test);
 }
 
+
 // 시작부분 스토리 함수
 async function story1(){
     if (storyText[storyNow]["type"] == "story") {
@@ -102,7 +103,9 @@ async function test() {
     }else if (storyText[storyNow]["type"] == "image") {
 
         $(".jjal").show();
-        
+
+        $("#jjal2").attr("src","white.png");
+        await delay(15);
         // $(".jjal").css("filter","blur(2px)");
 
         // setTimeout(()=>{
@@ -242,7 +245,6 @@ function calPoint() {
         setTimeout(()=>{
             document.addEventListener('click', test);
             test();
-
         },800)
         // document.addEventListener('click', test);
 
@@ -306,72 +308,74 @@ var storyText = {
     18: {"type" : "select"},
     19: {"type" : "image",
         "src": "classroom2.png"},
-    20: {"type" : "image",
+    20: {"type" : "story",
+        "text": "교실에 돌아와보니..."},
+    21: {"type" : "image",
         "src": "bullies.png"},
-    21: {"type" : "story",
+    22: {"type" : "story",
         "text": "무서운 언니들이 내 자리에 서 있었다."},
-    22: {"type" : "select"},
-    23: {"type" : "image",
+    23: {"type" : "select"},
+    24: {"type" : "image",
         "src": "hallway.jpg"},
-    24: {"type" : "chat",
-        "speaker" : "나",
-        "text" : "후.. 겨우 돌려 보냈네. 화장실이나 가야지.."},
     25: {"type" : "chat",
         "speaker" : "나",
+        "text" : "후.. 겨우 돌려 보냈네. 화장실이나 가야지.."},
+    26: {"type" : "chat",
+        "speaker" : "나",
         "text" : "...?"},
-    26: {"type" : "story",
+    27: {"type" : "story",
         "text" : "창 밖에서 나를 부르는 소리가 들린다."},
-    27: {"type" : "image",
-        "src" : "propose.png"},
-    28: {"type" : "select"},
-    29: {"type" : "image",
+    28: {"type" : "image",
+        "src" : "propose3.png"},
+    29: {"type" : "select"},
+    30: {"type" : "image",
         "src": "hallway.jpg"},
-    30: {"type" : "story",
+    31: {"type" : "story",
         "text": "대답을 하려던 차에 교실 쪽에서 큰 소리가 났다."},
-    31: {"type" : "image",
-        "src": "classroom2.png"},
     32: {"type" : "image",
+        "src": "classroom2.png"},
+    33: {"type" : "image",
         "src": "monsterscene.png"},
-    33: {"type" : "chat",
+    34: {"type" : "chat",
         "speaker" : "괴수",
         "text" : "크와아앙-!"},
-    34: {"type" : "select"},
-    35: {"type" : "story",
+    35: {"type" : "select"},
+    36: {"type" : "story",
         "text": "괴수와 싸우게 된 나... 잠깐 한눈 판 사이에...?"},
-    36: {"type" : "select"},
-    37: {"type" : "image",
+    37: {"type" : "select"},
+    38: {"type" : "image",
         "src": "monsterscene2.png"},
-    38: {"type" : "select"},
-    39: {"type" : "image",
+    39: {"type" : "select"},
+    40: {"type" : "image",
         "src": "classroom2.png"},
-    40: {"type" : "chat",
+    41: {"type" : "chat",
         "speaker" : "나",
         "text" : "후... 근데 아까 들렸던 찰칵 소리가 신경쓰이네.."},
         // 사진 바뀌는 애니메이션 좀 필요할듯
-    41: {"type" : "image",
+    42: {"type" : "image",
         "src": "classroom_sunset.jpg"},
-    42: {"type" : "story",
-        "text": "집에 얼른 가야겠다.."},
     43: {"type" : "story",
+        "text": "집에 얼른 가야겠다.."},
+    44: {"type" : "story",
         "text": "귀가하려 하는데 누군가 말을 걸어왔다."},
-    44: {"type" : "image",
+    45: {"type" : "image",
         "src": "friend.jpg"},
-    45: {"type" : "chat",
+    46: {"type" : "chat",
         "speaker" : "Jisu",
         "text" : "후후.. 오늘 재밌는 사진을 찍었는데요...? 같이 보실래요?"},
-    46: {"type" : "image",
+    47: {"type" : "image",
         "src": "camera.png"},
-    47: {"type" : "select"},
-    48: {"type" : "image",
+    48: {"type" : "select"},
+    49: {"type" : "image",
         "src": "classroom_sunset.jpg"},
-    49: {"type" : "chat",
+    50: {"type" : "chat",
         "speaker" : "나",
         "text" : "오늘 하루 왜이러지... 지친다."},
-    50: {"type" : "story",
+    51: {"type" : "story",
         "text": "앗... 또 누가 말을 걸어온다."},
-    51: {"type" : "image",
+    52: {"type" : "image",
         "src": "hansome.png"},
-    52: {"type" : "select"}
+    53: {"type" : "select"}
 }
 // ..
 
@@ -454,7 +458,7 @@ var q = {
         }
     },
     6: {
-        "question" : "정말 싫어하는 애가 괴수에게 잡아 먹히려 한다. <br>도우면 나도 위험해질 수 있다.",
+        "question" : "정말 싫어하는 애가 괴수에게 잡아 먹히려 한다. 도우면 나도 위험해질 수 있다.",
         "A" : {
             "answer" : "괴수한테 마법을 날리는 척하면서 그 녀석에게 날린다.",
             "score" : {"아무": 0, "세라": 0, "유리": 1, "비키": 2, "예리": 0, "네티": 1, "레미": 1, "메이": 0, "사랑": 2, "피치": 0, "체리": 0, "중성마녀": 4, "쇼콜라": 2, "바닐라": 1}

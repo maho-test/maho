@@ -249,11 +249,12 @@ width:5rem;
     width:30rem;
     height:30rem;
     border:#FFC2D5 solid 2px;
-    background-image: url("./mascot.png");
+    /* background-image: url("./black.png"); */
     background-position: center;
     background-size: 100%;
     background-repeat:no-repeat;    
-    transition:.25s;
+    /* transition:.25s; */
+    /* background-color: black; */
     /* animation:  fadeIn 1s ease-in-out ;
     animation-iteration-count: infinite;  
     animation-play-state: paused; */
@@ -292,7 +293,7 @@ width:5rem;
     align-items: center;   
     color: rgb(116, 116, 116);
     font-weight: 600;
-    font-size:1.8rem;
+    font-size:2rem;
     margin-bottom: 3rem;
     margin-top:2rem;
     cursor:pointer;
@@ -405,10 +406,10 @@ width:5rem;
 
 #r_head{
     padding: 0 8%;
-    margin: 0 0 10px 0;
+    margin: 5px 0 10px 0;
     font-family: 'Roboto';
     font-style: normal;
-    font-size: 1.6rem;
+    font-size: 1.75rem;
     line-height: 1.7rem;
     text-align: center;
     font-weight: bold;
@@ -615,6 +616,10 @@ color: #9D9D9D;
         transform-origin: 0 0;
         transition: 1s;
     }
+    .select {
+        font-size: 2.3rem;
+    }
+
     .select-container{
         position: absolute;
         top:8rem;
@@ -629,6 +634,9 @@ color: #9D9D9D;
     }
     .chat {
         font-size:2.5rem;
+    }
+    #r_head {
+        font-size:2rem;
     }
 }
 
