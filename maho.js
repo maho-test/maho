@@ -121,6 +121,7 @@ async function test() {
         var txt = q[testNow]["question"];
         i = 0;
         document.getElementById("test-text").innerHTML = "";
+        
         while(i<txt.length){
             await delay(50);
             document.getElementById("test-text").innerHTML += txt.charAt(i)+txt.charAt(i+1)+txt.charAt(i+2);
@@ -150,30 +151,28 @@ async function test() {
 
 // 질문 먼저 나오고 클릭시 선택지 나오도록 하는 함수
 function showSelect(){
+    document.removeEventListener("click", showSelect);
     $(".select-container").show();
     $(".select").show();
-
-    // //선택지 따라락
-    // const abc=["#A","#B","#C"];
-    // for (let i = 0;i<3;i++){
-    //     setTimeout(()=>{
-    //        console.log(abc[i]);
-    //        $(abc[i]).show();
-
-    //     },150 * i)
-    // }
-    document.removeEventListener("click", showSelect);
+    document.getElementById("A").addEventListener('click', calPoint);
+    document.getElementById("B").addEventListener('click', calPoint);
+    document.getElementById("C").addEventListener('click', calPoint);
 }
 
 // 선택지 선택시 호출, 점수 부여, 저장 후 eventListener 다시 추가하기
-document.getElementById("A").addEventListener('click', calPoint);
-document.getElementById("B").addEventListener('click', calPoint);
-document.getElementById("C").addEventListener('click', calPoint);
+// document.getElementById("A").addEventListener('click', calPoint);
+// document.getElementById("B").addEventListener('click', calPoint);
+// document.getElementById("C").addEventListener('click', calPoint);
 
 var resultMaho;
 
 // 선택지 버튼 클릭시 호출
 function calPoint() {
+    console.log(testNow);
+    document.getElementById("A").removeEventListener('click', calPoint);
+    document.getElementById("B").removeEventListener('click', calPoint);
+    document.getElementById("C").removeEventListener('click', calPoint);
+
     progressBar(testNow);
     selected = this.id;
     $("#아무").val(parseInt($("#아무").val()) + q[testNow][selected]["score"]["아무"]);
@@ -192,16 +191,19 @@ function calPoint() {
     $("#바닐라").val(parseInt($("#바닐라").val()) + q[testNow][selected]["score"]["바닐라"]);
     
     // $(`#`+selected).addClass("selectActive")
-    $(`#`+selected).css("font-size","2.1rem")
+    // $(`#`+selected).css("font-size","2.5rem");
+    $(`#`+selected).css("transform","translate3d(0,0,30px)");
 
-
-    setTimeout(()=>{
-        $(".select-container").hide();
-        $(`#`+selected).css("font-size","1.8rem")
-    },1500)
+   
     $("#test-text").html("");
 
     if (testNow==9){
+        setTimeout(()=>{
+            $(".select-container").hide();
+            $(`#`+selected).css("transform","translate3d(0,0,0)");
+            $("#progress-bar-before").css("border-radius","15px");
+            loading(3);
+        },1500);
         // 끝이므로 결과 계산하기 + 로딩창 띄우기 + 결과창 띄우기
         // $(".test").hide();
         // $(".loading").show();
@@ -238,16 +240,22 @@ function calPoint() {
         $("#BF").html(BF);
         $("#WF").html(WF);
         // $(".result").show();
-        loading(3);
+        
     }
     else {
         // 바로 다음으로 진행
         setTimeout(()=>{
+            $(".select-container").hide();
+            $(`#`+selected).css("transform","translate3d(0,0,0)");
             document.addEventListener('click', test);
             test();
-        },800)
-        // document.addEventListener('click', test);
+        },1500)
 
+
+        // document.addEventListener('click', test);
+        // setTimeout(()=>{
+        //     document.addEventListener('click', test);
+        // },300)
     }
     
 }
