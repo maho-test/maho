@@ -11,7 +11,7 @@
  
      gtag('config', 'G-DLS7DN6GT1');
      </script>
-     
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,6 +36,8 @@
     <meta name="naver-site-verification" content="105e1e66e7d7525a73ab182a6de9ad0ca9d605d8" />
     <!-- 구글 서치콘솔 인증태그 -->
     <meta name="google-site-verification" content="zrevIuuC9dajFrvEe8FmXFfK5tpdt3wB1z-YzHVLuWk" />
+     <!-- 카카오 링크 -->
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 </head>
 
 <body>
@@ -117,6 +119,9 @@
             <input type="hidden" id="생물쌤" value="0">
             <input type="hidden" id="쇼콜라" value="0">
             <input type="hidden" id="바닐라" value="0">
+
+            <input type="hidden" id="result-name" value="">
+            <input type="hidden" id="image-link" value="https://magicalgirl.kr/mascot.png">
         </div>
         <div class="page loading">
             <img src="./loading.png" alt="">
@@ -142,6 +147,15 @@
                 <p id="r_anima" class="result_text"></p>
                 <p id="r_name" class="result_text"></p>
                 
+                <div class="묶음">
+                    <div class="result_box">
+                        <div class="bar" id="b_left"></div>
+                        <p class="r_text"></p> 
+                        <div class="bar" id="b_right"></div>
+
+                    </div>
+                </div>
+
                 <div class="묶음2" sytle="overflow: hidden">  
                     <div class="friend" style="display:flex; margin-top:10px; ">
                         <div class="left" style="width:50%;">
@@ -157,37 +171,20 @@
                         </div>
                     </div>             
                 </div>
-                
-                <div class="묶음">
-                    <div class="result_box">
-                        <div class="bar" id="b_left"></div>
-                        <p class="r_text"></p> 
-                        <div class="bar" id="b_right"></div>
-
-                    </div>
-                </div>
-
-                
 
                 
                 <!-- 소셜 api 추가 기능 -->
                 <div class="flex-container" style="display:flex; align-items: center;flex-direction: column; margin: 2rem 0;">
                     <div class="shareButton">공유하기</div>
-
+                    <div class="kakao-link"><a id="create-kakao-link-btn" href="javascript:kakaoLink()">
+                        <img
+                          src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png"
+                          alt="카카오링크 보내기 버튼"
+                        />
+                        </a>
+                    </div>
                     <div class="addthis_inline_share_toolbox_0vdj"></div>
-            
-                    <!-- <div class="">
-                        <img src="kakao.png" class="box_t" style="width: 100%;  " alt="">
-                    </div>
-                    <div>
-                        <img src="kakao.png" class="box_t" style="width: 100%;  " alt="">
-                    </div>
-                    <div>
-                        <img src="kakao.png" class="box_t" style="width: 100%;  " alt="">
-                    </div>
-                    <div>
-                        <img src="kakao.png" class="box_t" style="width: 100%;  " alt="">
-                    </div> -->
+                    
                 </div>
                 
                 
@@ -201,7 +198,25 @@
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-620f5a73d9859581"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="maho.js"></script>
-
+    <script type="text/javascript">
+        Kakao.init('e199a470cc8f2e0ed438fe2b3ba38d73');
+        console.log(Kakao.isInitialized());
+        function kakaoLink() {
+            // 객체로 보낼 내용 설정.
+            Kakao.Link.createCustomButton({
+            container: '#create-kakao-link-btn',
+            templateId: 71594,
+            templateArgs: {
+            'RESULT_IMG':
+            document.getElementById("image-link").value,
+            'RESULT':
+            document.getElementById("result-name").value
+            },
+            })
+            
+            }
+        
+      </script>
 </body>
 
 </html>
