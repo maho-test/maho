@@ -668,33 +668,33 @@ var result = {
 
 // 개발 편의를 위한 함수
 function 임시초기화() {
-    $(".page").hide();
-    $(".start").hide();
-    $(".select-container").hide();
+    // $(".page").hide();
+    // $(".start").hide();
+    // $(".select-container").hide();
 
     // 결과창 확인할 때 사용
     // 결과창 이미지, 정보 채우기
-    var resultMaho ="비키";
-    $("#result-name").val(resultMaho);
-    $("#image-link").val("https://magicalgirl.kr/"+result[resultMaho]["img"]);
-    $(".result").show();
-    $(".result_image").css("background-image", "url(" + result[resultMaho]["img"]+")");
-    $(".line1").html("\""+result[resultMaho]["line1"] + "\"<br>");
-    $(".line2").html("\"" + result[resultMaho]["line2"] + "\"");
-    $("#r_name").html(resultMaho);
-    $("#r_anima").html(result[resultMaho]["anime"]);
-    $(".r_text").html(result[resultMaho]["personality"]);
+    // var resultMaho ="비키";
+    // $("#result-name").val(resultMaho);
+    // $("#image-link").val("https://magicalgirl.kr/"+result[resultMaho]["img"]);
+    // $(".result").show();
+    // $(".result_image").css("background-image", "url(" + result[resultMaho]["img"]+")");
+    // $(".line1").html("\""+result[resultMaho]["line1"] + "\"<br>");
+    // $(".line2").html("\"" + result[resultMaho]["line2"] + "\"");
+    // $("#r_name").html(resultMaho);
+    // $("#r_anima").html(result[resultMaho]["anime"]);
+    // $(".r_text").html(result[resultMaho]["personality"]);
 
-    let BF = result[resultMaho]["BF"];
-    let WF = result[resultMaho]["WF"]
-    $("#BF-img").attr('src', result[BF]["img"]); $("#WF-img").attr('src', result[WF]["img"]);
-    $("#BF-img").attr('alt', BF); $("#WF-img").attr('alt', WF);
-    $("#BF").html(BF);
-    $("#WF").html(WF);
-    $(".start").hide();
-    $(".content").css('box-shadow','0px 0px 0px 0px');
+    // let BF = result[resultMaho]["BF"];
+    // let WF = result[resultMaho]["WF"]
+    // $("#BF-img").attr('src', result[BF]["img"]); $("#WF-img").attr('src', result[WF]["img"]);
+    // $("#BF-img").attr('alt', BF); $("#WF-img").attr('alt', WF);
+    // $("#BF").html(BF);
+    // $("#WF").html(WF);
+    // $(".start").hide();
+    // $(".content").css('box-shadow','0px 0px 0px 0px');
 }
-임시초기화();
+// 임시초기화();
 
 //progress-bar
 const progressBar = (testNum)=>{
