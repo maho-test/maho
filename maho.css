@@ -538,6 +538,34 @@ color: #9D9D9D;
     background-color: white;
     margin-bottom: 1rem;
 }
+
+.share-container{
+    display: flex   ;
+}
+.kakao-link{
+    border-radius: 1000px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:45px;
+    width:45px;
+    margin-right: 2px;
+}
+.kakao-link:hover{
+    transform:translate(0,-4px);
+    transition: .2s;
+}
+#create-kakao-link-btn{
+    margin:0;
+    padding: 8px;
+    height:35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
 /*현석 부분*/
 .best {
     color:rgb(233, 71, 71);
