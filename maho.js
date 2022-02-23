@@ -13,6 +13,7 @@ var i;
 // start 버튼 누르면 story 진행
 function startTest() {
     $(".start").hide();
+    document.getElementById("story-text").innerHTML= " ";
     $(".story").show();
     $("#jjal").hide();
     document.addEventListener('click', story1);
@@ -168,7 +169,6 @@ var resultMaho;
 
 // 선택지 버튼 클릭시 호출
 function calPoint() {
-    console.log(testNow);
     document.getElementById("A").removeEventListener('click', calPoint);
     document.getElementById("B").removeEventListener('click', calPoint);
     document.getElementById("C").removeEventListener('click', calPoint);
@@ -210,20 +210,24 @@ function calPoint() {
         var temp;
         temp = 0;
 
+        $("#레미").val(parseInt($("#레미").val())-1);
+        var resultList=[];
         for (const [k,v] of Object.entries(result)){
             var scoreOf = parseInt($("#"+k).val());
-            if (temp == scoreOf){
-                // 랜덤으로 선택하기 (같은경우에)
-                let randNum = Math.floor(Math.random()*2);
-                if (randNum == 0) {
-                    resultMaho = k;
-                }
-            }
-            else if (scoreOf > temp){
-                resultMaho = k;
+            // 최고 점수 찾기, 이후 랜덤
+            if (scoreOf > temp){
                 temp = scoreOf;
             }
         }
+        // 최고점수인 마법소녀들 리스트에 저장.
+        for (const [k,v] of Object.entries(result)) {
+            var scoreOf = parseInt($("#"+k).val());
+            if (temp == scoreOf){
+                resultList.push(k);
+            }
+        }
+        let randNum = Math.floor(Math.random()*resultList.length);
+        resultMaho = resultList[randNum];
         // 결과창 이미지, 정보 채우기, 그림자 없애기
         $(".content").css('box-shadow','0px 0px 0px 0px');
         $(".result_image").css("background-image", "url(" + result[resultMaho]["img"]+")");
@@ -239,6 +243,9 @@ function calPoint() {
         $("#BF-img").attr('alt', BF); $("#WF-img").attr('alt', WF);
         $("#BF").html(BF);
         $("#WF").html(WF);
+
+        $("#result-name").val(resultMaho);
+        $("#image-link").val("https://magicalgirl.kr/"+result[resultMaho]["img"]);
         // $(".result").show();
         
     }
@@ -319,7 +326,7 @@ var storyText = {
     20: {"type" : "story",
         "text": "교실에 돌아와보니..."},
     21: {"type" : "image",
-        "src": "bullies.png"},
+        "src": "bullies.jpg"},
     22: {"type" : "story",
         "text": "무서운 언니들이 내 자리에 서 있었다."},
     23: {"type" : "select"},
@@ -334,7 +341,7 @@ var storyText = {
     27: {"type" : "story",
         "text" : "창 밖에서 나를 부르는 소리가 들린다."},
     28: {"type" : "image",
-        "src" : "propose3.png"},
+        "src" : "propose.jpg"},
     29: {"type" : "select"},
     30: {"type" : "image",
         "src": "hallway.jpg"},
@@ -424,12 +431,12 @@ var q = {
     3: {
         "question" : "험악한 여고생 언니들이 틴트 좀 빌리자고 한다. 하지만 돌려줄 것 같진 않다.",
         "A" : {
-            "answer" : "*같지만 일단 참는다. '나는 마법소녀니까~'",
-            "score" : {"아무": 1, "세라": 0, "유리": 2, "비키": 0, "예리": 2, "네티": 1, "레미": 2, "메이": 1, "사랑": 0, "피치": 2, "체리": 1, "중성마녀": 0, "쇼콜라": 0, "바닐라": 1}
+            "answer" : "화나지만 일단 참는다. '나는 마법소녀니까~'",
+            "score" : {"아무": 1, "세라": 0, "유리": 2, "비키": 0, "예리": 2, "네티": 1, "레미": 1, "메이": 1, "사랑": 0, "피치": 2, "체리": 1, "중성마녀": 0, "쇼콜라": 0, "바닐라": 1}
         },
         "B" : {
             "answer" : "주님 저 애를 죽이겠습니다. 용서해주세요. (주먹으로 해결한다.)",
-            "score" : {"아무": 2, "세라": 0, "유리": 1, "비키": 3, "예리": 0, "네티": 1, "레미": 0, "메이": 0, "사랑": 3, "피치": 0, "체리": 0, "중성마녀": 2, "쇼콜라": 3, "바닐라": 0}
+            "score" : {"아무": 2, "세라": 0, "유리": 1, "비키": 3, "예리": 0, "네티": 1, "레미": 1, "메이": 0, "사랑": 3, "피치": 0, "체리": 0, "중성마녀": 2, "쇼콜라": 3, "바닐라": 0}
         },
         "C" : {
             "answer" : "'언니들과 싸울 순 없지만 내 틴트도 소중한걸...'  울먹이기 시작한다.",
@@ -443,7 +450,7 @@ var q = {
             "score" : {"아무": 2, "세라": 1, "유리": 1, "비키": 1, "예리": 1, "네티": 2, "레미": 2, "메이": 0, "사랑": 2, "피치": 2, "체리": 1, "중성마녀": 1, "쇼콜라": 2, "바닐라": 0}
         },
         "B" : {
-            "answer" : "'**...' 속으로 욕한 후 무시한다.",
+            "answer" : "'하...' 속으로 욕한 후 무시한다.",
             "score" : {"아무": 1, "세라": 0, "유리": 2, "비키": 1, "예리": 1, "네티": 0, "레미": 0, "메이": 1, "사랑": 1, "피치": 0, "체리": 0, "중성마녀": 2, "쇼콜라": 1, "바닐라": 1}
         },
         "C" : {
@@ -455,7 +462,7 @@ var q = {
         "question" : "교실에 갑자기 괴수가 난입했다. 클래스 메이토가 위험하다. 당신의 선택은?",
         "A" : {
             "answer" : "'와타시.. 부끄러운걸..'  (탈의실에 달려가 변신!)",
-            "score" : {"아무": 2, "세라": 1, "유리": 2, "비키": 1, "예리": 2, "네티": 1, "레미": 1, "메이": 2, "사랑": 1, "피치": 1, "체리": 2, "중성마녀": 0, "쇼콜라": 1, "바닐라": 2}},
+            "score" : {"아무": 2, "세라": 1, "유리": 2, "비키": 1, "예리": 2, "네티": 1, "레미": 0, "메이": 2, "사랑": 1, "피치": 1, "체리": 2, "중성마녀": 0, "쇼콜라": 1, "바닐라": 2}},
         "B" : {
             "answer" : "'친구들을 지켜야해! 한시가 바빠!' (친구들이 지켜보든 말든 화려하게 변신!)",
             "score" : {"아무": 1, "세라": 2, "유리": 1, "비키": 2, "예리": 1, "네티": 1, "레미": 2, "메이": 1, "사랑": 2, "피치": 2, "체리": 1, "중성마녀": 0, "쇼콜라": 2, "바닐라": 1}
@@ -661,14 +668,15 @@ var result = {
 
 // 개발 편의를 위한 함수
 function 임시초기화() {
-    $(".page").hide();
-    $(".start").show();
-    $(".select-container").hide();
-    
+    // $(".page").hide();
+    // $(".start").hide();
+    // $(".select-container").hide();
 
     // 결과창 확인할 때 사용
     // 결과창 이미지, 정보 채우기
-    // var resultMaho ="유리";
+    // var resultMaho ="비키";
+    // $("#result-name").val(resultMaho);
+    // $("#image-link").val("https://magicalgirl.kr/"+result[resultMaho]["img"]);
     // $(".result").show();
     // $(".result_image").css("background-image", "url(" + result[resultMaho]["img"]+")");
     // $(".line1").html("\""+result[resultMaho]["line1"] + "\"<br>");
@@ -686,24 +694,16 @@ function 임시초기화() {
     // $(".start").hide();
     // $(".content").css('box-shadow','0px 0px 0px 0px');
 }
-임시초기화();
+// 임시초기화();
 
 //progress-bar
 const progressBar = (testNum)=>{
     const gauge = document.querySelector("#progress-bar-before");
-    const vw = window.innerWidth;
-    if (window.matchMedia("m-width:420px").matches){
-        if(testNum===8){
-                    gauge.style.borderRadius = "15px";
 
-        }
-        gauge.style.height = `${testNum * 8*vw/100}px`
+    if (window.matchMedia('(max-width:420px)').matches){
+        gauge.style.height = `${testNum * 72 / 9}vw`;
     } else{
-        if(testNum===8){
-            gauge.style.borderRadius = "15px";
-        }
-       gauge.style.height = `${testNum * 10/ 3}rem`
-
+        gauge.style.height = `${testNum * 30 / 9}rem`;
     }
     
 }

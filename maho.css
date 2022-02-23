@@ -1,12 +1,14 @@
 @font-face {
     font-family: 'Gomsin';
     src: url("./나눔손글씨\ 곰신체.ttf") format('woff');
+
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'SBAggroL';
     src: url('./SB\ 어그로\ L.ttf') format('woff');
+
     font-weight: normal;
     font-style: normal;
 }
@@ -110,6 +112,7 @@ background-color: #FFFFFF;
     /* start page */
 .start{
     /* opacity:1; */
+    display: block;
     background-image: url("./background/bg10.jpg");
     background-position: 50% 40%;
     /* background-size: 1200px; */
@@ -310,7 +313,7 @@ width:5rem;
 
     /* loading */
 .loading{
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     perspective: 1200px;
@@ -339,7 +342,7 @@ width:5rem;
 
 .result{
     opacity:1;
-    display: block;
+    display: none;
     font-family: 'SBAggroL';
 }
 .content{
@@ -505,6 +508,9 @@ color: #9D9D9D;
     margin-top: 1rem;
     text-align: center;
     font-size:1.6rem;
+}
+.friend {
+    text-align: center;
 }
 
 
