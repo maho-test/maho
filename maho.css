@@ -1,12 +1,12 @@
 @font-face {
     font-family: 'Gomsin';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/naverfont_05@1.0/Gomsin.woff') format('woff');
+    src: url("./나눔손글씨\ 곰신체.ttf") format('woff');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'SBAggroL';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroL.woff') format('woff');
+    src: url('./SB\ 어그로\ L.ttf') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -204,10 +204,11 @@ width:5rem;
 }
 #progress-bar-before{
     position: absolute;
-    top:8.3rem;
+    top:8.35rem;
     left:calc(50% - 15rem);
     width: 2.2rem;
     height: 0vw;
+    max-height:72vw;
     background: linear-gradient(180deg, rgba(255, 26, 96, 0.67) 2.49%, rgba(255, 26, 96, 0.47) 26.97%, rgba(255, 26, 96, 0.41) 51.97%, rgba(255, 26, 96, 0.12) 85.82%);
     border-radius: 15px 15px 0 0;
     transform: rotate(-90deg);
@@ -612,6 +613,7 @@ color: #9D9D9D;
         left:calc(50% - 15rem);
         width: 2.2rem;
         height: 0vw;
+        max-height:30rem;
         background: linear-gradient(180deg, rgba(255, 26, 96, 0.67) 2.49%, rgba(255, 26, 96, 0.47) 26.97%, rgba(255, 26, 96, 0.41) 51.97%, rgba(255, 26, 96, 0.12) 85.82%);
         border-radius: 15px 15px 0 0;
         transform: rotate(-90deg);

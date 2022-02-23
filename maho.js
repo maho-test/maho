@@ -691,10 +691,19 @@ function 임시초기화() {
 //progress-bar
 const progressBar = (testNum)=>{
     const gauge = document.querySelector("#progress-bar-before");
-    if (window.matchMedia("max-width:600px").matches){
-        gauge.style.height = `${testNum * 72 / 10}vw`
+    const vw = window.innerWidth;
+    if (window.matchMedia("m-width:420px").matches){
+        if(testNum===8){
+                    gauge.style.borderRadius = "15px";
+
+        }
+        gauge.style.height = `${testNum * 8*vw/100}px`
     } else{
-        gauge.style.height = `${testNum * 30 / 10}rem`
+        if(testNum===8){
+            gauge.style.borderRadius = "15px";
+        }
+       gauge.style.height = `${testNum * 10/ 3}rem`
 
     }
+    
 }
