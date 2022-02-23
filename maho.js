@@ -699,9 +699,11 @@ function 임시초기화() {
 //progress-bar
 const progressBar = (testNum)=>{
     const gauge = document.querySelector("#progress-bar-before");
+
     if (window.matchMedia('(max-width:420px)').matches){
         gauge.style.height = `${testNum * 72 / 9}vw`;
     } else{
         gauge.style.height = `${testNum * 30 / 9}rem`;
     }
+    
 }
