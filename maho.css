@@ -1,13 +1,13 @@
 @font-face {
     font-family: 'Gomsin';
-    src: url("./나눔손글씨\ 곰신체.ttf") format('woff');
+    src: url("./font/나눔손글씨\ 곰신체.ttf") format('woff');
 
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'SBAggroL';
-    src: url('./SB\ 어그로\ L.ttf') format('woff');
+    src: url('./font/SB\ 어그로\ L.ttf') format('woff');
 
     font-weight: normal;
     font-style: normal;
@@ -189,8 +189,8 @@ background-color: #FFFFFF;
     height:2.4rem;
     position: absolute;
     top:6rem;
-    left:calc(50% - 15rem)
-
+    left:calc(50% - 15rem);
+    z-index: 2;
 }
 .wingL{
 position:absolute;
@@ -207,15 +207,13 @@ width:5rem;
 }
 #progress-bar-before{
     position: absolute;
-    top:8.35rem;
-    left:calc(50% - 15rem);
-    width: 2.2rem;
-    height: 0vw;
+    top:0;
+    height: 2.2rem;
+    width:0%;
     max-height:72vw;
-    background: linear-gradient(180deg, rgba(255, 26, 96, 0.67) 2.49%, rgba(255, 26, 96, 0.47) 26.97%, rgba(255, 26, 96, 0.41) 51.97%, rgba(255, 26, 96, 0.12) 85.82%);
-    border-radius: 15px 15px 0 0;
-    transform: rotate(-90deg);
-    transform-origin: 0 0;
+    background: linear-gradient(90deg, rgba(255, 26, 96, 0.67) 2.49%, rgba(255, 26, 96, 0.47) 26.97%, rgba(255, 26, 96, 0.41) 51.97%, rgba(255, 26, 96, 0.12) 85.82%);
+    border-radius: 15px ;
+    
     transition: 1s;
     /* transition: 1s; */
 }
@@ -231,14 +229,12 @@ width:5rem;
     }
     #progress-bar-before{
         position: absolute;
-        top:8.3rem;
-        left:14vw;
-        width: 2.2rem;
-        height: 0vw;
-        background: linear-gradient(180deg, rgba(255, 26, 96, 0.67) 2.49%, rgba(255, 26, 96, 0.47) 26.97%, rgba(255, 26, 96, 0.41) 51.97%, rgba(255, 26, 96, 0.12) 85.82%);
-        border-radius: 15px 15px 0 0;
-        transform: rotate(-90deg);
-        transform-origin: 0 0;
+        top:0;
+        width: 0%;
+        height: 2.2rem;
+        background: linear-gradient(90deg, rgba(255, 26, 96, 0.67) 2.49%, rgba(255, 26, 96, 0.47) 26.97%, rgba(255, 26, 96, 0.41) 51.97%, rgba(255, 26, 96, 0.12) 85.82%);
+        border-radius: 15px;
+        
         transition: 1s;
         /* transition: 1s; */
     }
@@ -643,15 +639,13 @@ color: #9D9D9D;
     }
     #progress-bar-before{
         position: absolute;
-        top:5.3rem;
-        left:calc(50% - 15rem);
-        width: 2.2rem;
-        height: 0vw;
+        top:0;
+        width: 0%;
+        height: 2.2rem;
         max-height:30rem;
-        background: linear-gradient(180deg, rgba(255, 26, 96, 0.67) 2.49%, rgba(255, 26, 96, 0.47) 26.97%, rgba(255, 26, 96, 0.41) 51.97%, rgba(255, 26, 96, 0.12) 85.82%);
-        border-radius: 15px 15px 0 0;
-        transform: rotate(-90deg);
-        transform-origin: 0 0;
+        background: linear-gradient(90deg, rgba(255, 26, 96, 0.67) 2.49%, rgba(255, 26, 96, 0.47) 26.97%, rgba(255, 26, 96, 0.41) 51.97%, rgba(255, 26, 96, 0.12) 85.82%);
+        border-radius: 15px;
+        
         transition: 1s;
     }
     .select {

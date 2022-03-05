@@ -1,411 +1,121 @@
-// 미완성, 하고싶은 내용..!
-// 시작부분-> 테스트부분 fade in 애니메이션(opacity, display) , 선택지 애니메이션
-// 시작 시 로딩창 display none 상태가 되도록 조정하기.
-// BF, WF 
-
-
-
-var storyNow = 1;   // 현재 스토리 부분
-var testNow = 0;   // 현재 선택지 진행도
-var i;
-
-
-// start 버튼 누르면 story 진행
-function startTest() {
-    $(".start").hide();
-    document.getElementById("story-text").innerHTML= " ";
-    $(".story").show();
-    $("#jjal").hide();
-    document.addEventListener('click', story1);
-}
-// ..
-
-// 모바일, 웹 모두 화면 어디든 클릭시 다음으로 넘어감.
-// EventListener는 동기적으로 바뀌어 적용되는게 아니라 한번만 적용되는 것.
-
-function delay(time) {
-    return new Promise(resolve => setTimeout(resolve, time));
-}
-
-async function delayStoryText(txt) {
-    i = 0;
-    document.getElementById("story-text").innerHTML = "";
-    while(i<txt.length){
-        await delay(50);
-        document.getElementById("story-text").innerHTML += txt.charAt(i)+txt.charAt(i+1)+txt.charAt(i+2);
-        i+=3;
-    }
-    document.addEventListener('click', story1);
-}
-
-async function delayTestText(txt) {
-    i = 0;
-    document.getElementById("test-text").innerHTML = "";
-    while(i<txt.length){
-        await delay(50);
-        document.getElementById("test-text").innerHTML += txt.charAt(i)+txt.charAt(i+1)+txt.charAt(i+2);
-        i+=3;
-    }
-    document.addEventListener('click', test);
-}
-
-
-// 시작부분 스토리 함수
-async function story1(){
-    if (storyText[storyNow]["type"] == "story") {
-        $(".name-box").hide();
-        var txt = storyText[storyNow]["text"];
-        document.removeEventListener('click', story1);
-        delayStoryText(txt);
-    }else if (storyText[storyNow]["type"] == "chat") {
-        $(".name-box").show();
-        $(".name-box").html(storyText[storyNow]["speaker"]);
-        var txt = storyText[storyNow]["text"];
-        document.removeEventListener('click', story1);
-        delayStoryText(txt);
-    }else if (storyText[storyNow]["type"] == "image") {
-        $("#jjal").show();
-        $("#jjal").attr("src",storyText[storyNow]["src"]);
-    }else {
-        $("#jjal").hide();
-        $(".story").css("transition",".5s");
-        $(".story").css("background-color","black");
-    }
-    storyNow++;
-    if (storyNow == 8) {
-        document.removeEventListener("click", story1);
-        document.addEventListener('click', test);
-    }
-}
-// ..
-
-// 테스트 부분 함수, 프로그레스바, 선택창까지 관리
-async function test() {
-    if (storyNow == 8) {
-                $(".story").css("backgroundColor","white");
-                $(".story").hide();
-                $(".jjal").hide();
-                $(".select-container").hide();
-                $(".test").show();
-            }
-    if (storyText[storyNow]["type"] == "story") {
-        $(".name-box").hide();
-        var txt = storyText[storyNow]["text"];
-        document.removeEventListener('click', test);
-        delayTestText(txt);
-        // $("#test-text").html(storyText[storyNow]["text"]);
-    }else if (storyText[storyNow]["type"] == "chat") {
-        $(".name-box").show();
-        $(".name-box").html(storyText[storyNow]["speaker"]);
-        var txt = storyText[storyNow]["text"];
-        document.removeEventListener('click', test);
-        delayTestText(txt);
-        // $("#test-text").html(storyText[storyNow]["text"]);
-    }else if (storyText[storyNow]["type"] == "image") {
-
-        $(".jjal").show();
-
-        $("#jjal2").attr("src","white.png");
-        await delay(15);
-        // $(".jjal").css("filter","blur(2px)");
-
-        // setTimeout(()=>{
-        //     $(".jjal").css("filter","blur(0px)");
-        // },500)
-        $("#jjal2").attr("src",storyText[storyNow]["src"]);
-    }else if (storyText[storyNow]["type"] == "select") {
-        testNow++;
-        $(".name-box").hide();
-
-        // 이 부분은 event 관리를 위해 test 내에 작성
-        document.removeEventListener('click', test);
-        var txt = q[testNow]["question"];
-        i = 0;
-        document.getElementById("test-text").innerHTML = "";
-        
-        while(i<txt.length){
-            await delay(50);
-            document.getElementById("test-text").innerHTML += txt.charAt(i)+txt.charAt(i+1)+txt.charAt(i+2);
-            i+=3;
-        }
-        //...
-
-        // $("#test-text").html(q[testNow]["question"]);
-        $('.select').hide();
-        $("#A").html(q[testNow]["A"]["answer"]);
-        $("#B").html(q[testNow]["B"]["answer"]);
-        $("#C").html(q[testNow]["C"]["answer"]);
-
-        document.removeEventListener("click", test);
-        document.addEventListener("click", showSelect);
-    }else if (storyText[storyNow]["type"] == "imageoff"){
-        $(".jjal").hide();
-        // $("#test-text").html("");
-    }
-    else {
-        $(".jjal").hide();
-        $(".test").css("background-color","black");
-    }
-    storyNow++;
-}
-//..
-
-// 질문 먼저 나오고 클릭시 선택지 나오도록 하는 함수
-function showSelect(){
-    document.removeEventListener("click", showSelect);
-    $(".select-container").show();
-    $(".select").show();
-    document.getElementById("A").addEventListener('click', calPoint);
-    document.getElementById("B").addEventListener('click', calPoint);
-    document.getElementById("C").addEventListener('click', calPoint);
-}
-
-// 선택지 선택시 호출, 점수 부여, 저장 후 eventListener 다시 추가하기
-// document.getElementById("A").addEventListener('click', calPoint);
-// document.getElementById("B").addEventListener('click', calPoint);
-// document.getElementById("C").addEventListener('click', calPoint);
-
-var resultMaho;
-
-// 선택지 버튼 클릭시 호출
-function calPoint() {
-    document.getElementById("A").removeEventListener('click', calPoint);
-    document.getElementById("B").removeEventListener('click', calPoint);
-    document.getElementById("C").removeEventListener('click', calPoint);
-
-    progressBar(testNow);
-    selected = this.id;
-    $("#아무").val(parseInt($("#아무").val()) + q[testNow][selected]["score"]["아무"]);
-    $("#세라").val(parseInt($("#세라").val()) + q[testNow][selected]["score"]["세라"]);
-    $("#유리").val(parseInt($("#유리").val()) + q[testNow][selected]["score"]["유리"]);
-    $("#비키").val(parseInt($("#비키").val()) + q[testNow][selected]["score"]["비키"]);
-    $("#예리").val(parseInt($("#예리").val()) + q[testNow][selected]["score"]["예리"]);
-    $("#네티").val(parseInt($("#네티").val()) + q[testNow][selected]["score"]["네티"]);
-    $("#레미").val(parseInt($("#레미").val()) + q[testNow][selected]["score"]["레미"]);
-    $("#메이").val(parseInt($("#메이").val()) + q[testNow][selected]["score"]["메이"]);
-    $("#사랑").val(parseInt($("#사랑").val()) + q[testNow][selected]["score"]["사랑"]);
-    $("#피치").val(parseInt($("#피치").val()) + q[testNow][selected]["score"]["피치"]);
-    $("#체리").val(parseInt($("#체리").val()) + q[testNow][selected]["score"]["체리"]);
-    $("#중성마녀").val(parseInt($("#중성마녀").val()) + q[testNow][selected]["score"]["중성마녀"]);
-    $("#쇼콜라").val(parseInt($("#쇼콜라").val()) + q[testNow][selected]["score"]["쇼콜라"]);
-    $("#바닐라").val(parseInt($("#바닐라").val()) + q[testNow][selected]["score"]["바닐라"]);
-    
-    // $(`#`+selected).addClass("selectActive")
-    // $(`#`+selected).css("font-size","2.5rem");
-    $(`#`+selected).css("transform","translate3d(0,0,30px)");
-
-   
-    $("#test-text").html("");
-
-    if (testNow==9){
-        setTimeout(()=>{
-            $(".select-container").hide();
-            $(`#`+selected).css("transform","translate3d(0,0,0)");
-            $("#progress-bar-before").css("border-radius","15px");
-            loading(3);
-        },1500);
-        // 끝이므로 결과 계산하기 + 로딩창 띄우기 + 결과창 띄우기
-        // $(".test").hide();
-        // $(".loading").show();
-        var temp;
-        temp = 0;
-
-        $("#레미").val(parseInt($("#레미").val())-1);
-        var resultList=[];
-        for (const [k,v] of Object.entries(result)){
-            var scoreOf = parseInt($("#"+k).val());
-            // 최고 점수 찾기, 이후 랜덤
-            if (scoreOf > temp){
-                temp = scoreOf;
-            }
-        }
-        // 최고점수인 마법소녀들 리스트에 저장.
-        for (const [k,v] of Object.entries(result)) {
-            var scoreOf = parseInt($("#"+k).val());
-            if (temp == scoreOf){
-                resultList.push(k);
-            }
-        }
-        let randNum = Math.floor(Math.random()*resultList.length);
-        resultMaho = resultList[randNum];
-        // 결과창 이미지, 정보 채우기, 그림자 없애기
-        $(".content").css('box-shadow','0px 0px 0px 0px');
-        $(".result_image").css("background-image", "url(" + result[resultMaho]["img"]+")");
-        $(".line1").html("\""+result[resultMaho]["line1"] + "\"<br>");
-        $(".line2").html("\"" + result[resultMaho]["line2"] + "\"");
-        $("#r_name").html(resultMaho);
-        $("#r_anima").html(result[resultMaho]["anime"]);
-        $(".r_text").html(result[resultMaho]["personality"]);
-
-        let BF = result[resultMaho]["BF"];
-        let WF = result[resultMaho]["WF"]
-        $("#BF-img").attr('src', result[BF]["img"]); $("#WF-img").attr('src', result[WF]["img"]);
-        $("#BF-img").attr('alt', BF); $("#WF-img").attr('alt', WF);
-        $("#BF").html(BF);
-        $("#WF").html(WF);
-
-        $("#result-name").val(resultMaho);
-        $("#image-link").val("https://magicalgirl.kr/"+result[resultMaho]["img"]);
-        // $(".result").show();
-        
-    }
-    else {
-        // 바로 다음으로 진행
-        setTimeout(()=>{
-            $(".select-container").hide();
-            $(`#`+selected).css("transform","translate3d(0,0,0)");
-            document.addEventListener('click', test);
-            test();
-        },1500)
-
-
-        // document.addEventListener('click', test);
-        // setTimeout(()=>{
-        //     document.addEventListener('click', test);
-        // },300)
-    }
-    
-}
-
-
-//로딩 sec초 후 결과창 가는 함수
-const loading = (sec)=>{
-    const testPage = document.querySelector(".test");
-    const loadingPage = document.querySelector(".loading");
-    const resultPage = document.querySelector(".result");
-
-    testPage.style.display = "none"
-    loadingPage.style.display = "flex";
-    setTimeout(()=>{
-        loadingPage.style.display = "none";
-        resultPage.style.display = "block";
-    },sec*1000)
-}
-// ..
-
-// 스토리 진행용 스토리 객체
-var storyText = {
-    1: {"type" : "story",
+export const Story = [
+    {"type" : "story",
         "text" : "어느날 눈을 떠보니.. "},
-    2: {"type" : "image",
-        "src" : "mascot.png"},
-    3: {"type" : "story",
+    {"type" : "image",
+        "src" : "./images/mascot.png"},
+    {"type" : "story",
         "text" : "요괴가 눈앞에서 날라다니고 있었다. "},
-    4: {"type" : "chat",
+    {"type" : "chat",
         "speaker" : "빈짱",
         "text" : "난 요괴가 아니라 요정이라구..! 내 이름은 빈짱! 잘 부탁해!"},
-    5: {"type" : "chat",
+    {"type" : "chat",
         "speaker" : "나",
         "text" : "(...?)"},
-    6: {"type" : "story",
+    {"type" : "story",
         "text" : "요정의 말을 듣고, 나는 마법소녀가 되어 세상을 지키기 시작했다.."},
-    7: {"type" : "black"},
-    // 8번부터 test div 이용.
-    8: {"type" : "story",
+    {"type" : "black"},
+]
+export const Test = [
+    {"type" : "story",
         "text" : "20XX.03.09 월요일 아침..."},
-    9: {"type" : "story",
+    {"type" : "story",
         "text" : "아침이네..."},
-    10: {"type" : "image",
-        "src" : "morning.png"},
-    11: {"type" : "select"},
-    12: {"type" : "image",
-        "src":"goschool.png"},
-    13: {"type" : "image",
-        "src": "classroom2.png"},
-    14: {"type" : "story",
+    {"type" : "image",
+        "src" : "./images/morning.png"},
+    {"type" : "select"},
+    {"type" : "image",
+        "src":"./images/goschool.png"},
+    {"type" : "image",
+        "src": "./images/classroom2.png"},
+    {"type" : "story",
         "text": "학교에 도착했다."},
-    15: {"type" : "story",
+    {"type" : "story",
         "text": "체육시간이다. 체육관으로 가자."},
-    16: {"type" : "image",
-        "src": "gym.jpg"},
-    17: {"type" : "story",
+    {"type" : "image",
+        "src": "./images/gym.jpg"},
+    {"type" : "story",
         "text": "..."},
-    18: {"type" : "select"},
-    19: {"type" : "image",
-        "src": "classroom2.png"},
-    20: {"type" : "story",
+    {"type" : "select"},
+    {"type" : "image",
+        "src": "./images/classroom2.png"},
+    {"type" : "story",
         "text": "교실에 돌아와보니..."},
-    21: {"type" : "image",
-        "src": "bullies.jpg"},
-    22: {"type" : "story",
+    {"type" : "image",
+        "src": "./images/bullies.jpg"},
+    {"type" : "story",
         "text": "무서운 언니들이 내 자리에 서 있었다."},
-    23: {"type" : "select"},
-    24: {"type" : "image",
-        "src": "hallway.jpg"},
-    25: {"type" : "chat",
+    {"type" : "select"},
+    {"type" : "image",
+        "src": "./images/hallway.jpg"},
+    {"type" : "chat",
         "speaker" : "나",
         "text" : "후.. 겨우 돌려 보냈네. 화장실이나 가야지.."},
-    26: {"type" : "chat",
+    {"type" : "chat",
         "speaker" : "나",
         "text" : "...?"},
-    27: {"type" : "story",
+    {"type" : "story",
         "text" : "창 밖에서 나를 부르는 소리가 들린다."},
-    28: {"type" : "image",
-        "src" : "propose.jpg"},
-    29: {"type" : "select"},
-    30: {"type" : "image",
-        "src": "hallway.jpg"},
-    31: {"type" : "story",
+    {"type" : "image",
+        "src" : "./images/propose.jpg"},
+    {"type" : "select"},
+    {"type" : "image",
+        "src": "./images/hallway.jpg"},
+    {"type" : "story",
         "text": "대답을 하려던 차에 교실 쪽에서 큰 소리가 났다."},
-    32: {"type" : "image",
-        "src": "classroom2.png"},
-    33: {"type" : "image",
-        "src": "monsterscene.png"},
-    34: {"type" : "chat",
+    {"type" : "image",
+        "src": "./images/classroom2.png"},
+    {"type" : "image",
+        "src": "./images/monsterscene.png"},
+    {"type" : "chat",
         "speaker" : "괴수",
         "text" : "크와아앙-!"},
-    35: {"type" : "select"},
-    36: {"type" : "story",
+    {"type" : "select"},
+    {"type" : "story",
         "text": "괴수와 싸우게 된 나..."},
-    37: {"type" : "story",
+    {"type" : "story",
         "text": "어맛! 잠깐 한눈 판 사이에...?!"},
-    38: {"type" : "select"},
-    39: {"type" : "image",
-        "src": "monsterscene2.png"},
-    40: {"type" : "chat",
+    {"type" : "select"},
+    {"type" : "image",
+        "src": "./images/monsterscene2.png"},
+    {"type" : "chat",
         "speaker": "괴수",
         "text": "끼잉끼잉-"},
-    41: {"type" : "select"},
-    42: {"type" : "image",
-        "src": "classroom2.png"},
-    43: {"type" : "chat",
+    {"type" : "select"},
+    {"type" : "image",
+        "src": "./images/classroom2.png"},
+    {"type" : "chat",
         "speaker" : "나",
         "text" : "후... 근데 아까 들렸던 찰칵 소리가 신경쓰이네.."},
-    44: {"type" : "image",
-        "src": "classroom_sunset.jpg"},
-    45: {"type" : "story",
+    {"type" : "image",
+        "src": "./images/classroom_sunset.jpg"},
+    {"type" : "story",
         "text": "집에 얼른 가야겠다.."},
-    46: {"type" : "story",
+    {"type" : "story",
         "text": "귀가하려 하는데 누군가 말을 걸어왔다."},
-    47: {"type" : "image",
-        "src": "friend.jpg"},
-    48: {"type" : "chat",
+    {"type" : "image",
+        "src": "./images/friend.jpg"},
+    {"type" : "chat",
         "speaker" : "Jisu",
         "text" : "후후.. 오늘 재밌는 사진을 찍었는데요...? 같이 보실래요?"},
-    49: {"type" : "image",
-        "src": "camera.png"},
-    50: {"type" : "select"},
-    51: {"type" : "image",
-        "src": "classroom_sunset.jpg"},
-    52: {"type" : "chat",
+    {"type" : "image",
+        "src": "./images/camera.png"},
+    {"type" : "select"},
+    {"type" : "image",
+        "src": "./images/classroom_sunset.jpg"},
+    {"type" : "chat",
         "speaker" : "나",
         "text" : "오늘 하루 왜이러지... 넘넘 지친다."},
-    53: {"type" : "story",
+    {"type" : "story",
         "text": "앗... 또 누가 말을 걸어온다."},
-    54: {"type" : "image",
-        "src": "hansome.png"},
-    55: {"type" : "chat",
+    {"type" : "image",
+        "src": "./images/hansome.png"},
+    {"type" : "chat",
         "speaker" : "나",
         "text" : "(...!)"},
-    56: {"type" : "select"}
-}
-// ..
-
-// 문제와 선택지별 점수(마법소녀 점수 그렇다: 2 보통, 모르겠음, 다른 마법소녀에 비해 정도가 덜함: 1 아니다: 0)
-// 각 질문지별 평균점수는 0.7~1.3 이내로 오차, 최대한 1로
-var X=1;
-var q = {
-    1: {
+    {"type" : "select"}
+]
+export const Question = [
+    {
         "question" : "나의 아침은?",
         "A" : {
             "answer" : "'늦지만 않으면 되지..' 최대한 잔다.",
@@ -420,7 +130,7 @@ var q = {
             "score" : {"아무": 1, "세라": 0, "유리": 1, "비키": 1, "예리": 2, "네티": 0, "레미": 0, "메이": 2, "사랑": 1, "피치": 2, "체리": 0, "중성마녀": 2, "쇼콜라": 0, "바닐라": 2}
         }
     },
-    2: {
+    {
         "question" : "피구를 할 때 나는?",
         "A" : {
             "answer" : "승부는 승부. 피구왕 통키에 빙의해 '진심볼'을 던진다.",
@@ -435,7 +145,7 @@ var q = {
             "score" : {"아무": 1, "세라": 1, "유리": 0, "비키": 0, "예리": 1, "네티": 1, "레미": 0, "메이": 2, "사랑": 0, "피치": 1, "체리": 0, "중성마녀": 1, "쇼콜라": 0, "바닐라": 2}
         }
     },
-    3: {
+    {
         "question" : "험악한 여고생 언니들이 틴트 좀 빌리자고 한다. 하지만 돌려줄 것 같진 않다.",
         "A" : {
             "answer" : "화나지만 일단 참는다. '나는 마법소녀니까~'",
@@ -450,7 +160,7 @@ var q = {
             "score" : {"아무": 0, "세라": 3, "유리": 0, "비키": 0, "예리": 1, "네티": 1, "레미": 1, "메이": 2, "사랑": 0, "피치": 1, "체리": 2, "중성마녀": 0, "쇼콜라": 0, "바닐라": 2}
         }
     },
-    4: {
+    {
         "question" : "전교생이 쳐다보는 중에 사랑을 고백하는 반 친구! 당신은?",
         "A" : {
             "answer" : "\"고... 고멘!\" 당당히 거절한다.",
@@ -465,7 +175,7 @@ var q = {
             "score" : {"아무": 0, "세라": 2, "유리": 0, "비키": 1, "예리": 1, "네티": 1, "레미": 1, "메이": 2, "사랑": 0, "피치": 1, "체리": 2, "중성마녀": 0, "쇼콜라": 0, "바닐라": 2}
         }
     },
-    5: {
+    {
         "question" : "교실에 갑자기 괴수가 난입했다. 반 친구가 위험하다. 당신의 선택은?",
         "A" : {
             "answer" : "'아무래도 부끄러운걸..'  (탈의실에 달려가 변신!)",
@@ -479,7 +189,7 @@ var q = {
             "score" : {"아무": 0, "세라": 0, "유리": 0, "비키": 0, "예리": 0, "네티": 1, "레미": 0, "메이": 0, "사랑": 0, "피치": 0, "체리": 0, "중성마녀": 3, "쇼콜라": 0, "바닐라": 0}
         }
     },
-    6: {
+    {
         "question" : "정말 싫어하는 애가 괴수에게 잡아 먹히려 한다. 도우면 나도 위험해질 수 있다.",
         "A" : {
             "answer" : "괴수한테 마법을 날리는 척하면서 그 녀석에게 날린다.",
@@ -494,7 +204,7 @@ var q = {
             "score" : {"아무": 2, "세라": 2, "유리": 0, "비키": 1, "예리": 2, "네티": 1, "레미": 2, "메이": 1, "사랑": 1, "피치": 2, "체리": 2, "중성마녀": 0, "쇼콜라": 1, "바닐라": 0}
         }
     },
-    7: {
+    {
         "question" : "싸움이 끝난 후, 괴수의 목숨구걸! 살려달라 한다. 살려줄 것인가? ",
         "A" : {
             "answer" : "'문 티아라 액션(최종 필살기)'을 가한 후 무자비하게 돌아선다.",
@@ -509,7 +219,7 @@ var q = {
             "score" : {"아무": 0, "세라": 2, "유리": 1, "비키": 0, "예리": 0, "네티": 0, "레미": 2, "메이": 0, "사랑": 0, "피치": 1, "체리": 1, "중성마녀": 0, "쇼콜라": 1, "바닐라": 0}
         }
     },
-    8: {
+    {
         "question" : "애매하게 친한 친구가 내 마법 소녀/소년 변신 모습을 찍은 사진을 건넨다.",
         "A" : {
             "answer" : "뾰로롱-☆ 기억을 지워보려고 시도한다.",
@@ -524,7 +234,7 @@ var q = {
             "score" : {"아무": 0, "세라": 2, "유리": 0, "비키": 1, "예리": 1, "네티": 1, "레미": 1, "메이": 1, "사랑": 0, "피치": 2, "체리": 2, "중성마녀": 0, "쇼콜라": 1, "바닐라": 2}
         }
     },
-    9: {
+    {
         "question" : "방과 후 집에 가기전에 내가 좋아하는 애가 갑자기 말을 걸어온다. 이때 나는?",
         "A" : {
             "answer" : "손주 이름은 'Alice'로 한다. (결혼까지 생각한다.)",
@@ -539,13 +249,14 @@ var q = {
             "score" : {"아무": 2, "세라": 1, "유리": 1, "비키": 1, "예리": 2, "네티": 1, "레미": 1, "메이": 2, "사랑": 1, "피치": 1, "체리": 2, "중성마녀": 0, "쇼콜라": 1, "바닐라": 2}
         }
     }
-}
-// ..
-
-// BF: 만나면 친해지는.. WF: 만나면 싸우는..
-var result = {
+]
+//character말고 question 첫 아이템의 score에서 키 값 받아오기 가능
+export const Character = [
+    "아무","세라","유리","비키","예리","네티","레미","메이","사랑","피치","체리","중성마녀","쇼콜라","바닐라",
+]
+export const Result = {
     "아무": {
-        "img":"amu.png",
+        "img":"./images/amu.png",
         "anime": "캐릭캐릭 체인지",
         "line1" : "다들, 처음에는 겉모습만 보고선 판단하지만 어쩌면 진정한 모습은 의외로 겉모습과 전혀 다를지도 몰라.",
         "line2" : "나의 마음을 언록!",
@@ -554,7 +265,7 @@ var result = {
         "WF":"메이"
     },
     "세라": {
-        "img":"sera.jpg",
+        "img":"./images/sera.jpg",
         "anime": "세일러 문, 세일러문",
         "line1" : "달빛의 요정이여! 빛으로 얍!",
         "line2" : "정의의 이름으로 널 용서하지 않겠다!",
@@ -563,7 +274,7 @@ var result = {
         "WF":"사랑"
     },
     "유리": {
-        "img":"yuri.jpg",
+        "img":"./images/yuri.jpg",
         "anime": "세일러 머큐리, 세일러문",
         "line1" : "머큐리 요정이여~ 빛으로 얍!",
         "line2" : "시험시간 제곱 플러스 수업시간 제곱 플러스 루트 스트레스 곱하기 괄호열고 방해한 시간 제곱 괄호닫고...",
@@ -572,7 +283,7 @@ var result = {
         "WF":"네티"
     },
     "비키": {
-        "img":"viki.jpg",
+        "img":"./images/viki.jpg",
         "anime": "세일러 마스, 세일러문",
         "line1" : "마스 요정이여 빛으로 얍!",
         "line2" : "불꽃보다 더 뜨거운 벌을 내리겠어!",
@@ -581,7 +292,7 @@ var result = {
         "WF":"예리"
     },
     "예리": {
-        "img":"yeri.png",
+        "img":"./images/yeri.png",
         "anime": "잔느, 신의 괴도 잔느",
         "line1" : "체크 메이트!",
         "line2" : "강한 마음과 진정한 아름다움을 그리고.. 용기를!",
@@ -590,7 +301,7 @@ var result = {
         "WF":"비키"
     },
     "네티": {
-        "img":"neti.png",
+        "img":"./images/neti.png",
         "anime": "샐리, 천사소녀 네티",
         "line1" : "주님, 오늘도 정의로운 도둑이 되는걸 허락해주세요!",
         "line2" : "루루팡! 루루피! 루루~얍!",
@@ -599,7 +310,7 @@ var result = {
         "WF":"유리"
     },
     "레미": {
-        "img":"remi.png",
+        "img":"./images/remi.png",
         "anime": "도레미, 꼬마마법사 레미",
         "line1" : "역시 난 세상에서 가장 불행한 미소녀야! 뿌! 뿌! 뿌!",
         "line2" : "삐리카 삐리랄라 산뜻하게",
@@ -608,7 +319,7 @@ var result = {
         "WF":"피치"
     },
     "메이": {
-        "img":"mei.jpg",
+        "img":"./images/mei.jpg",
         "anime": "장메이, 꼬마마법사 레미",
         "line1" : "빠이빠이 폰포이 푸아푸아푸~~",
         "line2" : "빠이빠이 폰포이 부드럽게~",
@@ -617,7 +328,7 @@ var result = {
         "WF":"아무"
     },
     "사랑": {
-        "img":"sarang.jpg",
+        "img":"./images/sarang.jpg",
         "anime": "유사랑, 꼬마마법사 레미",
         "line1" : "사랑 사랑 참사랑",
         "line2" : "파멜 푸라루크 높이높이!",
@@ -626,7 +337,7 @@ var result = {
         "WF":"세라"
     },
     "피치": {
-        "img":"peach.jpg",
+        "img":"./images/peach.jpg",
         "anime": "웨딩 피치",
         "line1" : "???: 사랑에 빠진 자를 만나면 그 자를 반드시 없애라.",
         "line2" : "사랑의 멋짐을 모르는 당신은 불쌍해요.",
@@ -635,7 +346,7 @@ var result = {
         "WF":"레미"
     },
     "체리": {
-        "img":"cherry.png",
+        "img":"./images/cherry.png",
         "anime": "카드캡터 체리",
         "line1" : "너와의 계약에 따라 체리가 명한다. 봉인해제!",
         "line2" : "호에~~~",
@@ -644,7 +355,7 @@ var result = {
         "WF":"쇼콜라"
     },
     "중성마녀": {
-        "img":"makaojoma.jpg",
+        "img":"./images/makaojoma.jpg",
         "anime": "짱구, 핸더랜드의 대모험",
         "line1" : "사이좋게 지내요.",
         "line2" : " ",
@@ -653,7 +364,7 @@ var result = {
         "WF":"중성마녀"
     },
     "쇼콜라": {
-        "img":"chocolat.png",
+        "img":"./images/chocolat.png",
         "anime": "슈가슈가룬",
         "line1" : "말 안듣는 녀석들은 날려버린다!",
         "line2" : "슈가슈가룬 쇼코룬 당신의 하트를 픽업!",
@@ -662,7 +373,7 @@ var result = {
         "WF":"체리"
     },
     "바닐라": {
-        "img":"vanilla.jpg",
+        "img":"./images/vanilla.jpg",
         "anime": "슈가슈가룬",
         "line1" : "슈가슈가룬 바니룬 하트, 하트를 주시겠어요?",
         "line2" : "언제나 모두한테 사랑받는 사람은 모르는 일이야!",
@@ -670,43 +381,4 @@ var result = {
         "BF":"피치",
         "WF":"비키"
     },
-}
-
-
-// 개발 편의를 위한 함수
-function 임시초기화() {
-    // $(".page").hide();
-    // $(".start").hide();
-    // $(".select-container").hide();
-
-    // 결과창 확인할 때 사용
-    // 결과창 이미지, 정보 채우기
-    // var resultMaho ="비키";
-    // $("#result-name").val(resultMaho);
-    // $("#image-link").val("https://magicalgirl.kr/"+result[resultMaho]["img"]);
-    // $(".result").show();
-    // $(".result_image").css("background-image", "url(" + result[resultMaho]["img"]+")");
-    // $(".line1").html("\""+result[resultMaho]["line1"] + "\"<br>");
-    // $(".line2").html("\"" + result[resultMaho]["line2"] + "\"");
-    // $("#r_name").html(resultMaho);
-    // $("#r_anima").html(result[resultMaho]["anime"]);
-    // $(".r_text").html(result[resultMaho]["personality"]);
-
-    // let BF = result[resultMaho]["BF"];
-    // let WF = result[resultMaho]["WF"]
-    // $("#BF-img").attr('src', result[BF]["img"]); $("#WF-img").attr('src', result[WF]["img"]);
-    // $("#BF-img").attr('alt', BF); $("#WF-img").attr('alt', WF);
-    // $("#BF").html(BF);
-    // $("#WF").html(WF);
-    // $(".start").hide();
-    // $(".content").css('box-shadow','0px 0px 0px 0px');
-}
-// 임시초기화();
-
-//progress-bar
-const progressBar = (testNum)=>{
-    const gauge = document.querySelector("#progress-bar-before");
-    gauge.style.height = `${testNum*100/9}%`;
-
-    
 }
